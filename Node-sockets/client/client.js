@@ -1,4 +1,4 @@
-const socket = io('http://localhost:8000')
+const socket = io('http://192.168.2.22:8000')
 const blink_sound = new Tone.Player("./music/Oneshot.wav").toMaster();
 
 var uuid;
@@ -58,12 +58,13 @@ function playSound() {
 }
 
 function changeColor(lightness) {
-    
+    var n = Math.floor(Math.random() * 100)
+    console.log(n)
     anime({
         targets: 'body',  
         duration: duration,
         direction: direction,
-        background: 'hsla(0, 100%, 0%, '+lightness.toString()+')',
+        background: "hsla(0, 100%, " + n + "%," + lightness.toString() + ')',
         endDelay: 1000,
         delay: delay,
         easing: 'easeInOutQuad'

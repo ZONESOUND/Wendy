@@ -72,7 +72,7 @@ server.listen(port, function listening() {
 });
 
 function blink(data, send_client) {
-    console.log("blink");
+    //console.log("blink");
     io.emit('broadcast', {
         uuid: send_client,
         percentage: data.percentage,
