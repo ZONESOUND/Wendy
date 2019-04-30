@@ -1,5 +1,5 @@
-const MAX_STARS = 600;
-let speed = 40,stars = [];
+const MAX_STARS = 400;
+let speed = 20,stars = [];
 
 
 function setup() {
