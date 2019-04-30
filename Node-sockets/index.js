@@ -24,6 +24,7 @@ io.on('connection', (socket, req) => {
     })
 
     socket.on('send',(data) => { //from MAX
+        console.log("send");
         var send_client = connection_client;
         if (interval != null) clearInterval(interval);
         if (data.mode == "blink") {
@@ -41,7 +42,7 @@ io.on('connection', (socket, req) => {
 
     socket.on('connected', (data) => {ƒ
         connection_client.push(data.uuid)
-        //console.log(connection_client.length)
+        console.log(connection_client.length)
     })
 
     socket.on('disconnected',(data) => {
