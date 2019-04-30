@@ -5,6 +5,14 @@ var loopTime = 1;
 var direction = 'alternate';
 var animeing = false;
 var animation = null;
+var blink_sound = []
+var order = 0;
+
+
+for (var i = 0; i <= 3; i++) {
+    blink_sound[i] = new Tone.Player(`./music/LTVM_A_Oneshot_0${i+1}.wav`).toMaster();
+}
+
 
 function checkLightMode(data) {
     delay = 0;
@@ -20,12 +28,7 @@ function checkLightMode(data) {
             duration = data.duration;
             direction = 'alternate';
             changeColor(1);
-            setTimeout(function() {
-                if (blink_sound.state == "stopped") {
-                    blink_sound.restart();
-                }
-                console.log("blink: "+blink_sound.state);
-            }, delay);
+            order = data.order
             //$('body').css('background-color', `${data.color}`)
             
         }
@@ -44,13 +47,23 @@ function checkLightMode(data) {
 }
 
 
-function playSound() {
-    blink_sound.start();
+function playSound(sound) {
+    if(sound) {
+        if (sound.state == "stopped") {
+            sound.start();
+        }
+    } 
+
 }
 
 function changeColor(lightness) {
     
     if (animation != null) return;
+
+    setTimeout(function () {
+        playSound(blink_sound[order])
+    }, delay);
+
     animation = anime({
         targets: '#inner',  
         duration: duration,
@@ -61,6 +74,8 @@ function changeColor(lightness) {
         easing: 'easeInOutQuad',
         loop: loopTime*2
     });
+
+
 
     animation.finished.then(function() {
         animation = null;

@@ -40,7 +40,7 @@ io.on('connection', (socket, req) => {
         
     })
 
-    socket.on('connected', (data) => {ƒ
+    socket.on('connected', (data) => {
         connection_client.push(data.uuid)
         console.log(connection_client.length)
     })
@@ -79,7 +79,8 @@ function blink(data, send_client) {
         percentage: data.percentage,
         mode: data.mode,
         random: data.random,
-        duration: duration
+        duration: duration,
+        order: Math.floor(Math.random()* 4)
     });
 }
 
