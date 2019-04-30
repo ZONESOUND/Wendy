@@ -26,33 +26,47 @@ socket.on('connect', (data) => {
     	data: 'I am so excited I am connected! It is like Christmas!'
     })
 
-    const sender = function (mode, percentage, random) {
-    	if (new Date() - prevTime < 300) return;
-    	prevTime = new Date();
-		Max.post("percentage:" + percentage);
-		socket.emit('send', {
-	    	mode: mode, 
-	    	percentage: percentage,
-	    	random: random
-	    })
+    const sender = function (data) {
+
+		//Max.post("percentage:" + percentage);
+		Max.post(data);
+		socket.emit('send', data)
 	};
 
 
     Max.addHandler("light", (...args) => {
 		Max.post("light args[0]:" + args[0]/100);
-		sender("light", args[0]/100., false);
+		colorInd = 0;
+		if (args.length > 1) colorInd = args[1]; 
+		sender(fillData("light", args[0]/100., colorInd));
 		
 	});
 
 	Max.addHandler("blink", (...args) => {
+		if (new Date() - prevTime < 300) return;
+    	prevTime = new Date();
 		Max.post("blink args[0]:" + args[0]/100.);
 		//args[0] percentage
-		var random = false;
-		if (args.length > 1) random = args[1];
-		sender("blink", args[0]/100., random);
+		random = 0;
+		keepBlink = 1;
+		colorInd = 0;
+		if (args.length > 1) colorInd = args[1]
+		if (args.length > 2) keepBlink = args[2];
+		if (args.length > 3) random = args[3];
+		sender(fillData("blink", args[0]/100., colorInd, random, keepBlink));
 
 	});
 })
+
+function fillData(mode, percentage, colorInd=0, random=0, keepBlink=1) {
+	return data = {
+		mode: mode,
+		percentage: percentage,
+		keepBlink: keepBlink,
+		colorInd: colorInd,
+		random: random
+	};
+}
 
 // Max.addHandler(Max.MESSAGE_TYPES.ALL, (handled, ...args) => {
 // 	if (!handled) {

@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
 
 const io = socketio(server);
 
-var duration = 500;
+var duration = 250;
 var loop_blink = true;
 var interval = null;
 
@@ -27,9 +27,12 @@ io.on('connection', (socket, req) => {
         console.log("send");
         var send_client = connection_client;
         if (interval != null) clearInterval(interval);
+        if (data.cdo == null) console.log("GO!");
         if (data.mode == "blink") {
             send_client = choose_client(data.percentage);
             // console.log(send_client);
+            loop_blink = data.keepBlink;
+            console.log("loop_blink:"+loop_blink);
             if (loop_blink) {
                 interval = setInterval(function(){
                     blink(data, choose_client(data.percentage));     
@@ -73,12 +76,13 @@ server.listen(port, function listening() {
 });
 
 function blink(data, send_client) {
-    //console.log("blink");
+    console.log("color! "+data.colorInd);
     io.emit('broadcast', {
         uuid: send_client,
         percentage: data.percentage,
         mode: data.mode,
         random: data.random,
+        colorInd: data.colorInd,
         duration: duration
     });
 }

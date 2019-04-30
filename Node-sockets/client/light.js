@@ -1,10 +1,14 @@
 var delay = 0;
-var duration = 500;
-var endDelay = 500;
+var duration = 100;
+var endDelay = 0;
 var loopTime = 1;
 var direction = 'alternate';
 var animeing = false;
 var animation = null;
+var colors = ["0, 100%, 100%",
+"58, 100%, 68%",
+"0, 100%, 68%",
+"196, 100%, 68%"]
 
 function checkLightMode(data) {
     delay = 0;
@@ -19,12 +23,12 @@ function checkLightMode(data) {
             }
             duration = data.duration;
             direction = 'alternate';
-            changeColor(1);
+            changeColor(1, data.colorInd);
             setTimeout(function() {
                 if (blink_sound.state == "stopped") {
                     blink_sound.restart();
                 }
-                console.log("blink: "+blink_sound.state);
+                //console.log("blink: "+blink_sound.state);
             }, delay);
             //$('body').css('background-color', `${data.color}`)
             
@@ -38,7 +42,7 @@ function checkLightMode(data) {
             animation = null;
         }
         //console.log("light:"+data.percentage.toString());
-        changeColor(data.percentage);
+        changeColor(data.percentage, data.colorInd);
     } 
 
 }
@@ -48,14 +52,16 @@ function playSound() {
     blink_sound.start();
 }
 
-function changeColor(lightness) {
-    
+function changeColor(lightness, colorInd) {
+    console.log(colorInd);
+    console.log("hsla(" + colors[colorInd] + "," + lightness.toString() + ")");
     if (animation != null) return;
     animation = anime({
         targets: '#inner',  
         duration: duration,
         direction: direction,
-        background: "hsla(0, 100%, 100%," + lightness.toString() + ")",
+        //background: "hsla(0, 100%, 100%, 1)",
+        background: "hsla(" + colors[colorInd] + "," + lightness.toString() + ")",
         endDelay: endDelay,
         delay: delay,
         easing: 'easeInOutQuad',
