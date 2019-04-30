@@ -9,6 +9,13 @@ var colors = ["0, 100%, 100%",
 "58, 100%, 68%",
 "0, 100%, 68%",
 "196, 100%, 68%"]
+var blink_sound = []
+
+
+for (var i = 0; i <= 3; i++) {
+    blink_sound[i] = new Tone.Player(`./music/LTVM_A_Oneshot_0${i+1}.wav`).toMaster();
+}
+
 
 function checkLightMode(data) {
     delay = 0;
@@ -23,7 +30,8 @@ function checkLightMode(data) {
             }
             duration = data.duration;
             direction = 'alternate';
-            changeColor(1, data.colorInd);
+
+            changeColor(1, data.order);
             setTimeout(function() {
                 if (blink_sound.state == "stopped") {
                     blink_sound.restart();
@@ -42,31 +50,43 @@ function checkLightMode(data) {
             animation = null;
         }
         //console.log("light:"+data.percentage.toString());
-        changeColor(data.percentage, data.colorInd);
+        changeColor(data.percentage, data.order);
     } 
 
 }
 
 
-function playSound() {
-    blink_sound.start();
+function playSound(sound) {
+    if(sound) {
+        if (sound.state == "stopped") {
+            sound.start();
+        }
+    } 
+
 }
 
-function changeColor(lightness, colorInd) {
-    console.log(colorInd);
-    console.log("hsla(" + colors[colorInd] + "," + lightness.toString() + ")");
+function changeColor(lightness, order) {
+    console.log(order);
+    console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
     if (animation != null) return;
+
+    setTimeout(function () {
+        playSound(blink_sound[order])
+    }, delay);
+
     animation = anime({
         targets: '#inner',  
         duration: duration,
         direction: direction,
         //background: "hsla(0, 100%, 100%, 1)",
-        background: "hsla(" + colors[colorInd] + "," + lightness.toString() + ")",
+        background: "hsla(" + colors[order] + "," + lightness.toString() + ")",
         endDelay: endDelay,
         delay: delay,
         easing: 'easeInOutQuad',
         loop: loopTime*2
     });
+
+
 
     animation.finished.then(function() {
         animation = null;

@@ -82,8 +82,10 @@ function blink(data, send_client) {
         percentage: data.percentage,
         mode: data.mode,
         random: data.random,
-        colorInd: data.colorInd,
+
+        order: data.colorInd,
         duration: duration
+
     });
 }
 

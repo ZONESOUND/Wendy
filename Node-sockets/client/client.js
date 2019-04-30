@@ -1,9 +1,6 @@
-const socket = io('http://172.20.10.2:8000')
-const blink_sound = new Tone.Player("./music/Oneshot.wav").toMaster();
-
+const socket = io('https://two-ways-transmission.herokuapp.com/')
 var uuid;
 
-console.log(socket);
 socket.on('connect', () => {
     console.log("connect");
     uuid = generate_uuid()
@@ -18,10 +15,9 @@ socket.on('connect', () => {
 })
 
 $(document).ready(function(){
-    $("#b").click(playSound);
-    
-});
+    $(document).one(event, initial)
 
+});
 
 
 window.addEventListener('beforeunload', function (e) {
