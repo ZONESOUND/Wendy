@@ -1,10 +1,11 @@
-const socket = io('http://192.168.2.22:8000')
+const socket = io('http://172.20.10.2:8000')
 const blink_sound = new Tone.Player("./music/Oneshot.wav").toMaster();
 
 var uuid;
 
-
+console.log(socket);
 socket.on('connect', () => {
+    console.log("connect");
     uuid = generate_uuid()
     socket.emit('connected', {
         uuid: uuid
