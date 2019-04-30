@@ -2,9 +2,7 @@ const socket = io('http://192.168.2.22:8000')
 const blink_sound = new Tone.Player("./music/Oneshot.wav").toMaster();
 
 var uuid;
-var delay = 0;
-var duration = 500;
-var direction = 'alternate';
+
 
 socket.on('connect', () => {
     uuid = generate_uuid()
@@ -13,35 +11,7 @@ socket.on('connect', () => {
     })
 
     socket.on('broadcast', (data) => {
-        delay = 0;
-        if (data.mode == "blink") {
-
-            console.log(data.uuid, uuid);
-            if (data.uuid.includes(uuid)) {
-                console.log("go!"+data.random+delay);
-                if (data.random == "true") {
-                    delay = Math.random()*1000;
-                    console.log("delay?"+delay);
-                }
-                duration = data.duration;
-                direction = 'alternate';
-                changeColor(0);
-                setTimeout(function() {
-                    if (blink_sound.state == "stopped") {
-                        blink_sound.restart();
-                    }
-                    console.log("blink: "+blink_sound.state);
-                }, delay);
-                //$('body').css('background-color', `${data.color}`)
-                
-            }
-        } else if (data.mode == "light") {
-            direction = 'normal';
-            duration = 10;
-            changeColor(data.percentage);
-        }
-        
-        
+        checkLightMode(data);  
     });
 
     
@@ -50,28 +20,10 @@ socket.on('connect', () => {
 
 $(document).ready(function(){
     $("#b").click(playSound);
+    
 });
 
-function playSound() {
-   // alert("playSOund");
-    blink_sound.start()
-}
 
-function changeColor(lightness) {
-    var n = Math.floor(Math.random() * 100)
-    console.log(n)
-    anime({
-        targets: 'body',  
-        duration: duration,
-        direction: direction,
-        background: "hsla(0, 100%, " + n + "%," + lightness.toString() + ')',
-        endDelay: 1000,
-        delay: delay,
-        easing: 'easeInOutQuad'
-        //loop: true
-    });
-
-}
 
 window.addEventListener('beforeunload', function (e) {
     socket.emit('disconnected',{
