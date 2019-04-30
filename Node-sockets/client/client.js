@@ -1,4 +1,5 @@
 const socket = io('https://two-ways-transmission.herokuapp.com/')
+//const socket = io('http://localhost:8000')
 var uuid;
 
 socket.on('connect', () => {

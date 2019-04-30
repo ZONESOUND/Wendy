@@ -32,7 +32,7 @@ io.on('connection', (socket, req) => {
             send_client = choose_client(data.percentage);
             // console.log(send_client);
             loop_blink = data.keepBlink;
-            console.log("loop_blink:"+loop_blink);
+
             if (loop_blink) {
                 interval = setInterval(function(){
                     blink(data, choose_client(data.percentage));     
@@ -76,7 +76,6 @@ server.listen(port, function listening() {
 });
 
 function blink(data, send_client) {
-    console.log("color! "+data.colorInd);
     io.emit('broadcast', {
         uuid: send_client,
         percentage: data.percentage,
