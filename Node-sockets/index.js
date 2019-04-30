@@ -39,7 +39,7 @@ io.on('connection', (socket, req) => {
         
     })
 
-    socket.on('connected', (data) => {
+    socket.on('connected', (data) => {ƒ
         connection_client.push(data.uuid)
         //console.log(connection_client.length)
     })
