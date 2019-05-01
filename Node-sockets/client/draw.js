@@ -11,8 +11,9 @@ function setup() {
 }
 
 function draw() {
-    var color = select('#inner').style('background-color')
-    background(color)
+    //var color = select('#inner').style('background-color')
+    //background(color)
+    clear();
     if(!start) {
         drawTitleText()
     }
