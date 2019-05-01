@@ -27,7 +27,6 @@ io.on('connection', (socket, req) => {
         console.log("send");
         var send_client = connection_client;
         if (interval != null) clearInterval(interval);
-        if (data.cdo == null) console.log("GO!");
         if (data.mode == "blink") {
             send_client = choose_client(data.percentage);
             // console.log(send_client);
@@ -81,7 +80,6 @@ function blink(data, send_client) {
         percentage: data.percentage,
         mode: data.mode,
         random: data.random,
-
         order: data.colorInd,
         duration: duration
 

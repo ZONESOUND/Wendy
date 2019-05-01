@@ -41,7 +41,7 @@ function checkLightMode(data) {
         }
     } else if (data.mode == "light") {
         direction = 'normal';
-        duration = 10;
+        duration = 0;
         loopTime = 1;
         if (animation != null) {
             animation.pause();
@@ -64,10 +64,10 @@ function playSound(sound) {
 }
 
 function changeColor(lightness, order) {
-    //console.log(order);
-    console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
-    if (animation != null) return;
 
+    if (animation != null) return;
+    console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
+    
     setTimeout(function () {
         playSound(blink_sound[order])
     }, delay);
@@ -85,8 +85,8 @@ function changeColor(lightness, order) {
     });
 
 
-
     animation.finished.then(function() {
+        console.log("animation done");
         animation = null;
     });
 
