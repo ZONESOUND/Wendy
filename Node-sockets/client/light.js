@@ -21,11 +21,9 @@ function checkLightMode(data) {
     delay = 0;
     if (data.mode == "blink") {
 
-        //console.log(data.uuid, uuid);
         if (data.uuid.includes(uuid)) {
-            if (data.random == "true") {
-                delay = Math.random()*1000;
-            }
+            delay = Math.random()*data.random;
+            console.log("delay: "+delay);
             duration = data.duration;
             direction = 'alternate';
 

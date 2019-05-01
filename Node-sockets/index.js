@@ -11,8 +11,8 @@ const server = http.createServer((req, res) => {
 const io = socketio(server);
 
 var duration = 250;
-var loop_blink = true;
 var interval = null;
+var blink_interval = 2000;
 
 io.on('connection', (socket, req) => {
     socket.emit('welcome', {
@@ -24,18 +24,18 @@ io.on('connection', (socket, req) => {
     })
 
     socket.on('send',(data) => { //from MAX
-        console.log("send");
+        //console.log("send");
         var send_client = connection_client;
         if (interval != null) clearInterval(interval);
         if (data.mode == "blink") {
             send_client = choose_client(data.percentage);
             // console.log(send_client);
-            loop_blink = data.keepBlink;
+            //loop_blink = data.keepBlink;
 
-            if (loop_blink) {
+            if (data.keepBlink) {
                 interval = setInterval(function(){
                     blink(data, choose_client(data.percentage));     
-                }, 2000);
+                }, data.keepBlink);
             }
         } 
         blink(data, send_client);
