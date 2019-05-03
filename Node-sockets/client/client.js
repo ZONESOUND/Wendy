@@ -1,5 +1,5 @@
-const socket = io('https://two-ways-transmission.herokuapp.com/')
-// const socket = io('http://localhost:8000')
+// const socket = io('https://two-ways-transmission.herokuapp.com/')
+const socket = io('http://localhost:8000')
 // const socket = io('172.20.10.3:8000')
 var uuid;
 
@@ -11,6 +11,7 @@ socket.on('connect', () => {
     })
 
     socket.on('broadcast', (data) => {
+        console.log(data)
         checkLightMode(data);  
     });
 

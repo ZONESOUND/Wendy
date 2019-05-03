@@ -42,6 +42,9 @@ io.on('connection', (socket, req) => {
                 interval = setInterval(function(){
                     blink(data, choose_client(data.percentage));     
                 }, data.keepBlink);
+            }else {
+                data.mode = 'stop'
+                blink(data, choose_client(data.percentage));
             }
         } 
         blink(data, send_client);

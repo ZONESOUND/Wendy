@@ -10,6 +10,7 @@ var colors = ["0, 100%, 100%",
 "0, 100%, 68%",
 "196, 100%, 68%"]
 var blink_sound = []
+var mode = 'stop';
 
 
 for (var i = 0; i <= 3; i++) {
@@ -19,8 +20,8 @@ for (var i = 0; i <= 3; i++) {
 
 function checkLightMode(data) {
     delay = 0;
+    mode = data.mode
     if (data.mode == "blink") {
-
         if (data.uuid.includes(uuid)) {
             delay = Math.random()*data.random;
             console.log("delay: "+delay);
@@ -62,7 +63,7 @@ function playSound(sound) {
 }
 
 function changeColor(lightness, order) {
-
+    
     if (animation != null) return;
     console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
     if(direction != 'normal') {
@@ -88,9 +89,6 @@ function changeColor(lightness, order) {
     animation.finished.then(function() {
         console.log("animation done");
         animation = null;
-        if (lightness == 0) {
-            direction = 'alternate'
-        }
     });
 
 }

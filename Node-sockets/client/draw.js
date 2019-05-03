@@ -17,7 +17,7 @@ function setup() {
 function draw() {
 
     clear();
-    if(direction != 'normal') {
+    if(mode == 'stop') {
         drawRipple()
     }
     if(!start) {
@@ -26,9 +26,11 @@ function draw() {
 
     starField()
 
-    if(touches.length && direction != 'normal') { 
-        for(var i=0;i<touches.length;i++) {
-            current[touches[i].x][touches[i].y] = 255
+    if (touches.length) {
+        if (mode == 'stop') {
+            for (var i = 0; i < touches.length; i++) {
+                current[touches[i].x][touches[i].y] = 255
+            }
         }
         send(touches.length / 1)
     }
