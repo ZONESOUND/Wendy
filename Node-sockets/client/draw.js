@@ -2,6 +2,8 @@ const MAX_STARS = 400;
 let speed = 20,stars = [];
 
 
+
+
 function setup() {
     var canvas = createCanvas(windowWidth, windowHeight)
     canvas.parent('inner');
@@ -13,12 +15,24 @@ function setup() {
 function draw() {
     //var color = select('#inner').style('background-color')
     //background(color)
+    
     clear();
     if(!start) {
         drawTitleText()
     }
     starField()
 
+    if(touches.length) { 
+        send(touches.length / 1)
+    }
+    
+    
+}
+
+
+function drawCircle() {
+    fill(0)
+    circle(windowWidth / 2 - 10, 60, 20);
 }
 
 

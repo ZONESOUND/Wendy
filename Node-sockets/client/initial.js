@@ -7,7 +7,6 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
 
 function initial() {
-    console.log('g')
     var noSleep = new NoSleep();
     noSleep.enable();
     if (Tone.context.state !== 'running') {
@@ -16,7 +15,6 @@ function initial() {
     // playSound()
     // $(document).on(event, sound);
     start = true
-    $(document).on(event, checkState);
 
 }
 

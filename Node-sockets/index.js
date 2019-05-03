@@ -19,8 +19,14 @@ io.on('connection', (socket, req) => {
         'welcome': 'Welcome!!'
     })
 
+
     socket.on('message',(data) => {
         //console.log(data);
+    })
+
+    socket.on('userfeedback', (data) => {
+        console.log('userfeedback:' + JSON.stringify(data))
+        io.emit('maxRecieve', data)
     })
 
     socket.on('send',(data) => { //from MAX

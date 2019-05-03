@@ -8,8 +8,10 @@
 
 const Max = require("max-api");
 var socket = require('socket.io-client')('https://two-ways-transmission.herokuapp.com/');
-// var socket = require('socket.io-client')('http://localhost:8000');
 var prevTime = new Date();
+var prevTime_recieve = new Date();
+
+
 
 socket.on('connect', (data) => {
     socket.on('welcome', (message) => {
@@ -17,11 +19,13 @@ socket.on('connect', (data) => {
 		Max.outlet(message)
 	});
 
-    socket.on('test', (message) => {
-    	Max.post(message)
-		Max.outlet(message)
+    socket.on('maxRecieve', (message) => {
+			if (new Date() - prevTime_recieve < 100) return;
+			prevTime_recieve = new Date()
+			Max.post(message)
+			Max.outlet(message)
     });
-	
+		
 
     socket.emit('message', {
     	data: 'I am so excited I am connected! It is like Christmas!'
@@ -30,16 +34,16 @@ socket.on('connect', (data) => {
     const sender = function (data) {
 
 		//Max.post("percentage:" + percentage);
-		Max.post(data);
-		socket.emit('send', data)
-	};
+			Max.post(data);
+			socket.emit('send', data)
+		};
 
 
     Max.addHandler("light", (...args) => {
-		Max.post("light args[0]:" + args[0]/100);
-		colorInd = 0;
-		if (args.length > 1) colorInd = args[1]; 
-		sender(fillData("light", args[0]/100., colorInd));
+			Max.post("light args[0]:" + args[0]/100);
+			colorInd = 0;
+			if (args.length > 1) colorInd = args[1]; 
+			sender(fillData("light", args[0]/100., colorInd));
 		
 	});
 
