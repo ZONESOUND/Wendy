@@ -29,9 +29,9 @@ function checkLightMode(data) {
 
             changeColor(1, data.order);
             setTimeout(function() {
-                if (blink_sound.state == "stopped") {
-                    blink_sound.restart();
-                }
+                // if (blink_sound.state == "stopped") {
+                //     blink_sound.restart();
+                // }
                 //console.log("blink: "+blink_sound.state);
             }, delay);
             //$('body').css('background-color', `${data.color}`)
@@ -65,10 +65,12 @@ function changeColor(lightness, order) {
 
     if (animation != null) return;
     console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
-    
-    setTimeout(function () {
-        playSound(blink_sound[order])
-    }, delay);
+    if(direction != 'normal') {
+        setTimeout(function () {
+            playSound(blink_sound[order])
+        }, delay);
+    }
+
 
     animation = anime({
         targets: '#inner',  
@@ -86,6 +88,9 @@ function changeColor(lightness, order) {
     animation.finished.then(function() {
         console.log("animation done");
         animation = null;
+        if (lightness == 0) {
+            direction = 'alternate'
+        }
     });
 
 }

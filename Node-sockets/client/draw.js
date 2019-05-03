@@ -17,14 +17,16 @@ function setup() {
 function draw() {
 
     clear();
-    drawRipple()
+    if(direction != 'normal') {
+        drawRipple()
+    }
     if(!start) {
         drawTitleText()
     }
 
     starField()
 
-    if(touches.length) { 
+    if(touches.length && direction != 'normal') { 
         for(var i=0;i<touches.length;i++) {
             current[touches[i].x][touches[i].y] = 255
         }
