@@ -21,7 +21,7 @@ for (var i = 0; i <= 3; i++) {
 function checkLightMode(data) {
     delay = 0;
     mode = data.mode
-    if (data.mode == "blink") {
+    if (mode == "blink") {
         if (data.uuid.includes(uuid)) {
             delay = Math.random()*data.random;
             console.log("delay: "+delay);
@@ -38,7 +38,7 @@ function checkLightMode(data) {
             //$('body').css('background-color', `${data.color}`)
             
         }
-    } else if (data.mode == "light") {
+    } else if (mode == "light") {
         direction = 'normal';
         duration = 0;
         loopTime = 1;
@@ -55,9 +55,10 @@ function checkLightMode(data) {
 
 function playSound(sound) {
     if(sound) {
-        if (sound.state == "stopped") {
-            sound.start();
-        }
+        sound.start();
+        // if (sound.state == "stopped") {
+        //     sound.start();
+        // }
     } 
 
 }
@@ -87,7 +88,9 @@ function changeColor(lightness, order) {
 
 
     animation.finished.then(function() {
-        console.log("animation done");
+        
+        if (mode != "light" || lightness == 0) mode = "stop"
+        console.log("animation done"+mode);
         animation = null;
     });
 

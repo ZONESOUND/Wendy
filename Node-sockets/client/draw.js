@@ -18,22 +18,31 @@ function draw() {
 
     clear();
     if(mode == 'stop') {
+        if (touches.length) {
+            for (var i = 0; i < touches.length; i++) {
+                current[touches[i].x][touches[i].y] = 255
+            }
+            send(touches.length / 1)
+        }
         drawRipple()
+    } else {
+        rippleSetup()
     }
+    
     if(!start) {
         drawTitleText()
     }
 
     starField()
 
-    if (touches.length) {
-        if (mode == 'stop') {
-            for (var i = 0; i < touches.length; i++) {
-                current[touches[i].x][touches[i].y] = 255
-            }
-        }
-        send(touches.length / 1)
-    }
+    // if (touches.length) {
+    //     if (mode == 'stop') {
+    //         for (var i = 0; i < touches.length; i++) {
+    //             current[touches[i].x][touches[i].y] = 255
+    //         }
+    //     }
+    //     send(touches.length / 1)
+    // }
     
 }
 

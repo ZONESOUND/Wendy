@@ -43,7 +43,7 @@ io.on('connection', (socket, req) => {
                     blink(data, choose_client(data.percentage));     
                 }, data.keepBlink);
             }else {
-                data.mode = 'stop'
+                //data.mode = 'stop'
                 blink(data, choose_client(data.percentage));
             }
         } 
