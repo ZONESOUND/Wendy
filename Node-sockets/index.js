@@ -91,7 +91,6 @@ function blink(data, send_client) {
         random: data.random,
         order: data.colorInd,
         duration: duration
-
     });
 }
 

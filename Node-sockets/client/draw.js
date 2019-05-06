@@ -17,13 +17,8 @@ function setup() {
 function draw() {
 
     clear();
+    console.log(mode)
     if(mode == 'stop') {
-        if (touches.length) {
-            for (var i = 0; i < touches.length; i++) {
-                current[touches[i].x][touches[i].y] = 255
-            }
-            send(touches.length / 1)
-        }
         drawRipple()
     } else {
         rippleSetup()
@@ -35,14 +30,14 @@ function draw() {
 
     starField()
 
-    // if (touches.length) {
-    //     if (mode == 'stop') {
-    //         for (var i = 0; i < touches.length; i++) {
-    //             current[touches[i].x][touches[i].y] = 255
-    //         }
-    //     }
-    //     send(touches.length / 1)
-    // }
+    if (touches.length) {
+        if (mode == 'stop') {
+            for (var i = 0; i < touches.length; i++) {
+                current[touches[i].x][touches[i].y] = 255
+            }
+        }
+        send(touches.length / 1)
+    }
     
 }
 
@@ -56,7 +51,8 @@ function starField() {
     if(start) {
         translate(windowWidth / 2, windowHeight / 2);
     }
-    
+
+   
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i].update();
         stars[i].show();
@@ -177,5 +173,6 @@ function drawRipple() {
 }
 
 function mouseDragged() {
+    send(1)
     current[mouseX][mouseY] = 255
 }

@@ -24,7 +24,7 @@ function checkLightMode(data) {
     if (mode == "blink") {
         if (data.uuid.includes(uuid)) {
             delay = Math.random()*data.random;
-            console.log("delay: "+delay);
+            // console.log("delay: "+delay);
             duration = data.duration;
             direction = 'alternate';
 
@@ -66,7 +66,7 @@ function playSound(sound) {
 function changeColor(lightness, order) {
     
     if (animation != null) return;
-    console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
+    // console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
     if(direction != 'normal') {
         setTimeout(function () {
             playSound(blink_sound[order])
@@ -90,7 +90,7 @@ function changeColor(lightness, order) {
     animation.finished.then(function() {
         
         if (mode != "light" || lightness == 0) mode = "stop"
-        console.log("animation done"+mode);
+        // console.log("animation done"+mode);
         animation = null;
     });
 
