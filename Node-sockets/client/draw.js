@@ -19,8 +19,6 @@ function draw() {
     clear();
     if(mode == 'stop') {
         drawRipple()
-    } else {
-        rippleSetup()
     }
     
     if(!start) {
@@ -31,6 +29,7 @@ function draw() {
 
     if (touches.length) {
         if (mode == 'stop') {
+            drawRipple()
             for (var i = 0; i < touches.length; i++) {
                 current[touches[i].x][touches[i].y] = 255
             }
@@ -42,6 +41,10 @@ function draw() {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
+    for (var i = 0; i < MAX_STARS; i++) {
+        stars[i] = new Star();
+    }
+    rippleSetup()
 }
 
 
