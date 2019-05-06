@@ -13,8 +13,6 @@ socket.on('connect', () => {
     socket.on('broadcast', (data) => {
         checkLightMode(data);  
     });
-
-
     
 })
 

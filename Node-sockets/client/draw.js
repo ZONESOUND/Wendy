@@ -17,7 +17,6 @@ function setup() {
 function draw() {
 
     clear();
-    console.log(mode)
     if(mode == 'stop') {
         drawRipple()
     } else {

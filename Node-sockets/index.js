@@ -13,6 +13,7 @@ const io = socketio(server);
 var duration = 250;
 var interval = null;
 var blink_interval = 2000;
+var currentTime = new Date()
 
 io.on('connection', (socket, req) => {
     socket.emit('welcome', {
@@ -30,7 +31,7 @@ io.on('connection', (socket, req) => {
     })
 
     socket.on('send',(data) => { //from MAX
-        //console.log("send");
+        currentTime = new Date()
         var send_client = connection_client;
         if (interval != null) clearInterval(interval);
         if (data.mode == "blink") {
@@ -40,7 +41,11 @@ io.on('connection', (socket, req) => {
 
             if (data.keepBlink) {
                 interval = setInterval(function(){
-                    blink(data, choose_client(data.percentage));     
+                    blink(data, choose_client(data.percentage)); 
+                    console.log(new Date() - currentTime)
+                    if (new Date() - currentTime > 10000) {
+                        clearInterval(interval)
+                    }
                 }, data.keepBlink);
             }else {
                 //data.mode = 'stop'

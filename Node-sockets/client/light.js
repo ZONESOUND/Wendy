@@ -21,6 +21,7 @@ for (var i = 0; i <= 3; i++) {
 function checkLightMode(data) {
     delay = 0;
     mode = data.mode
+    console.log(mode)
     if (mode == "blink") {
         if (data.uuid.includes(uuid)) {
             delay = Math.random()*data.random;
