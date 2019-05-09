@@ -20,6 +20,7 @@ $(document).ready(function() {
 })
 
 
+
 let handleOrientation = () => {
 	if (event.webkitCompassHeading) {
 		compassdir = event.webkitCompassHeading;

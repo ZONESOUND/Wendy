@@ -13,14 +13,13 @@ function setup() {
     rippleSetup()
 
 }
-var compassdir = 1;
-var alpha = 0;
-var beta = 0;
-var gamma = 0;
 
 function draw() {
 
     clear();
+    text(compassdir, 10, 30)
+    textSize(12);
+
     
     // if(mode == 'stop') {
     //     if (touches.length) {
@@ -49,6 +48,7 @@ function draw() {
     //     }
     //     send(touches.length / 1)
     // }
+    // compassdir
     
 }
 
