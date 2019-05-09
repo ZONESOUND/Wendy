@@ -17,7 +17,16 @@ $(document).ready(function() {
         	$("#"+id).prop('disabled',false);
         }, shootCD, bid);
 	});
-});
+})
+
+
+let handleOrientation = () => {
+	if (event.webkitCompassHeading) {
+		compassdir = event.webkitCompassHeading;
+	} else {
+		compassdir = event.alpha;
+	}
+}
 
 if (window.DeviceOrientationEvent) {
 	window.addEventListener("deviceorientation", handleOrientation, true);
@@ -25,14 +34,6 @@ if (window.DeviceOrientationEvent) {
 	console.log("device does not support DeviceOrientation");
 }
 
-let handleOrientation = () => {
-  if(event.webkitCompassHeading) {
-      compassdir = event.webkitCompassHeading; 
-    }
-    else {
-      compassdir = event.alpha;
-    }
-}
 
 /*
 
