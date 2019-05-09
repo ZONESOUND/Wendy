@@ -28,9 +28,10 @@ function send(data) {
     socket.emit("clientSend", data);
 }
 
-$(document).ready(function(){
-    $(document).one(event, initial)    
-});
+// $(document).ready(function(){
+//     $(document).one(event, initial)    
+// });
+document.addEventListener(event, initial)
 
 
 window.addEventListener('beforeunload', function (e) {

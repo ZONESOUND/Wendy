@@ -1,3 +1,5 @@
+import { removeListener } from "cluster";
+
 var isMobile = false
 var start = false
 var event = 'click'
@@ -15,6 +17,7 @@ function initial() {
     // playSound()
     // $(document).on(event, sound);
     start = true
+    removeListener(event, initial)
 
 }
 
