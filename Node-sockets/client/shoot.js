@@ -1,11 +1,6 @@
 var shootCD = 4000;
 var compassdir = 0;
 
-if (window.DeviceOrientationEvent) {
-	window.addEventListener("deviceorientation", handleOrientation, true);
-} else {
-	console.log("device does not support DeviceOrientation");
-}
 
 $(document).ready(function() {
 
@@ -16,37 +11,30 @@ $(document).ready(function() {
 		$(this).prop('disabled',true);
 		var bid = $(this).attr("id")
 		var number = parseInt(bid.split("-")[1]);
-		console.log("compass : "+ getCompass());
 		send({shoot: number, compass: compassdir});
 		setTimeout(function(id) {
 			$("#"+id).addClass("glow");
         	$("#"+id).prop('disabled',false);
         }, shootCD, bid);
 	});
-});
+})
+
 
 let handleOrientation = () => {
-  if(event.webkitCompassHeading) {
-      compassdir = event.webkitCompassHeading; 
-    }
-    else {
-      compassdir = event.alpha;
-    }
+	if (event.webkitCompassHeading) {
+		compassdir = event.webkitCompassHeading;
+	} else {
+		compassdir = event.alpha;
+	}
 }
 
-function getCompass() {
-	var compassdir = 0;
-	if (window.DeviceOrientationEvent) {
-		window.addEventListener('deviceorientation', function(eventData) {
-		    if(event.webkitCompassHeading) {
-		      // Apple works only with this, alpha doesn't work
-		      compassdir = event.webkitCompassHeading;  
-		    }
-		    else compassdir = event.alpha;
-		});
-	}
-	return compassdir;
+if (window.DeviceOrientationEvent) {
+	window.addEventListener("deviceorientation", handleOrientation, true);
+} else {
+	console.log("device does not support DeviceOrientation");
 }
+
+
 /*
 
 getComputedStyle(document.documentElement)

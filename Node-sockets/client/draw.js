@@ -188,6 +188,5 @@ function drawRipple() {
 }
 
 function mouseDragged() {
-    // send(1)
     current[mouseX][mouseY] = 255
 }

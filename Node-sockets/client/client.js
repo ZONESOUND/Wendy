@@ -29,7 +29,7 @@ function send(data) {
 }
 
 $(document).ready(function(){
-    $(document).one(event, initial)    
+    document.addEventListener(event, initial)
 });
 
 

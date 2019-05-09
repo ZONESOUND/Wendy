@@ -1,3 +1,4 @@
+var noSleep = new NoSleep();
 var isMobile = false
 var start = false
 var event = 'click'
@@ -7,15 +8,13 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
 
 function initial() {
-    var noSleep = new NoSleep();
-    noSleep.enable();
     if (Tone.context.state !== 'running') {
         Tone.context.resume();
     }
     // playSound()
     // $(document).on(event, sound);
+    noSleep.enable();
     start = true
-
 }
 
 function checkState() {
