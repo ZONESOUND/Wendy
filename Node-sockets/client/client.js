@@ -19,18 +19,10 @@ socket.on('connect', () => {
 })
 
 
-
 function send(data) {
-    // socket.emit('userfeedback', {
-    //     'instrument': number
-    // })
-
     socket.emit("clientSend", data);
 }
 
-$(document).ready(function(){
-    document.addEventListener(event, initial)
-});
 
 
 window.addEventListener('beforeunload', function (e) {

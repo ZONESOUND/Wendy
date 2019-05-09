@@ -19,33 +19,6 @@ $(document).ready(function() {
 })
 
 
-
-// let handleOrientation = () => {
-// 	if (event.webkitCompassHeading) {
-// 		compassdir = event.webkitCompassHeading;
-// 	} else {
-// 		compassdir = event.alpha;
-// 	}
-// }
-
-// if (window.DeviceOrientationEvent) {
-// 	alert('h')
-// 	window.addEventListener("deviceorientation", handleOrientation, true);
-// } else {
-// 	console.log("device does not support DeviceOrientation");
-// }
-
-
-/*
-
-getComputedStyle(document.documentElement)
-    .getPropertyValue('--my-variable-name'); // #999999
-
-document.documentElement.style
-    .setProperty('--my-variable-name', 'pink');
-
-*/
-
 function checkShootStatus(data) {
 	if (data.status == "Shoot") {
 		$("button").addClass("glow");

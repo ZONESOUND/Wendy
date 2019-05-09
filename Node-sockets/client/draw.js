@@ -17,10 +17,6 @@ function setup() {
 function draw() {
 
     clear();
-    text(compassdir, 10, 30)
-    textSize(12);
-
-    
     // if(mode == 'stop') {
     //     if (touches.length) {
     //         for (var i = 0; i < touches.length; i++) {
@@ -38,17 +34,6 @@ function draw() {
     }
 
     starField()
-
-    // if (touches.length) {
-    //     if (mode == 'stop') {
-    //         drawRipple()
-    //         for (var i = 0; i < touches.length; i++) {
-    //             current[touches[i].x][touches[i].y] = 255
-    //         }
-    //     }
-    //     send(touches.length / 1)
-    // }
-    // compassdir
     
 }
 
