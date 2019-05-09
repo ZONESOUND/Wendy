@@ -1,5 +1,4 @@
 var shootCD = 4000;
-var compassdir = 0;
 
 
 $(document).ready(function() {
@@ -21,19 +20,20 @@ $(document).ready(function() {
 
 
 
-let handleOrientation = () => {
-	if (event.webkitCompassHeading) {
-		compassdir = event.webkitCompassHeading;
-	} else {
-		compassdir = event.alpha;
-	}
-}
+// let handleOrientation = () => {
+// 	if (event.webkitCompassHeading) {
+// 		compassdir = event.webkitCompassHeading;
+// 	} else {
+// 		compassdir = event.alpha;
+// 	}
+// }
 
-if (window.DeviceOrientationEvent) {
-	window.addEventListener("deviceorientation", handleOrientation, true);
-} else {
-	console.log("device does not support DeviceOrientation");
-}
+// if (window.DeviceOrientationEvent) {
+// 	alert('h')
+// 	window.addEventListener("deviceorientation", handleOrientation, true);
+// } else {
+// 	console.log("device does not support DeviceOrientation");
+// }
 
 
 /*

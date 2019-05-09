@@ -2,9 +2,25 @@ var noSleep = new NoSleep();
 var isMobile = false
 var start = false
 var event = 'click'
+var compassdir = 0;
+
+let handleOrientation = () => {
+    if (event.webkitCompassHeading) {
+        compassdir = event.webkitCompassHeading;
+    } else {
+        compassdir = event.alpha;
+    }
+}
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     event = 'touchstart'
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", handleOrientation, true);
+    } else {
+        console.log("device does not support DeviceOrientation");
+    }
 }
+
 
 
 function initial() {
