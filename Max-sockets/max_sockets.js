@@ -7,11 +7,12 @@
 
 
 const Max = require("max-api");
-var socket = require('socket.io-client')('https://two-ways-transmission.herokuapp.com/');
-// var socket = require('socket.io-client')('http://localhost:8000');
+//var socket = require('socket.io-client')('https://two-ways-transmission.herokuapp.com/');
+var socket = require('socket.io-client')('http://localhost:8000');
 var prevTime = new Date();
 var prevTime_recieve = new Date();
-
+var status_arr = ["Light", "Gyro", "Shoot"]
+var status = "Light";
 
 
 socket.on('connect', (data) => {
@@ -36,15 +37,31 @@ socket.on('connect', (data) => {
 
 		//Max.post("percentage:" + percentage);
 			Max.post(data);
-			socket.emit('send', data)
+			socket.emit('maxSend', data)
 		};
+
+	Max.addHandler("status", (...args) => {
+		Max.post("status:" + status_arr[args[0]]);
+		status = status_arr[args[0]];
+		
+	});
+
+	Max.addHandler("shoot", (...args) => {
+		status = "Shoot"
+		data = {
+			status: status,
+			// people: args[0],
+			// type: args[1]
+		}
+		sender(data);
+	})
 
 
     Max.addHandler("light", (...args) => {
-			Max.post("light args[0]:" + args[0]/100);
-			colorInd = 0;
-			if (args.length > 1) colorInd = args[1]; 
-			sender(fillData("light", args[0]/100., colorInd));
+		Max.post("light args[0]:" + args[0]/100);
+		colorInd = 0;
+		if (args.length > 1) colorInd = args[1]; 
+		sender(fillLightData("light", args[0]/100., colorInd));
 		
 	});
 
@@ -59,17 +76,18 @@ socket.on('connect', (data) => {
 		if (args.length > 1) colorInd = args[1]
 		if (args.length > 2) keepBlink = args[2];
 		if (args.length > 3) random = args[3];
-		sender(fillData("blink", args[0]/100., colorInd, random, keepBlink));
+		sender(fillLightData("blink", args[0]/100., colorInd, random, keepBlink));
 
 	});
 })
 
-function fillData(mode, percentage, colorInd=0, random=0, keepBlink=1) {
+function fillLightData(mode, percentage, colorInd=0, random=0, keepBlink=1) {
 	return data = {
+		status: status,
 		mode: mode,
 		percentage: percentage,
 		keepBlink: keepBlink,
-		colorInd: colorInd,
+		order: colorInd,
 		random: random
 	};
 }

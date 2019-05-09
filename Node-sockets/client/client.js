@@ -10,18 +10,22 @@ socket.on('connect', () => {
         uuid: uuid
     })
 
-    socket.on('broadcast', (data) => {
+    socket.on('clientRecieve', (data) => {
+        console.log(data.status)
         checkLightMode(data);  
+        checkShootStatus(data);
     });
     
 })
 
 
 
-function send(number) {
-    socket.emit('userfeedback', {
-        'instrument': number
-    })
+function send(data) {
+    // socket.emit('userfeedback', {
+    //     'instrument': number
+    // })
+
+    socket.emit("clientSend", data);
 }
 
 $(document).ready(function(){
