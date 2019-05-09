@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 2,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 291.0, 90.0, 1212.0, 687.0 ],
+		"rect" : [ 34.0, 79.0, 901.0, 687.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,6 +38,131 @@
 		"style" : "",
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"bgcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+					"bubbleusescolors" : 1,
+					"id" : "obj-34",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 879.0, 392.0, 394.5, 50.0 ],
+					"presentation_linecount" : 2,
+					"text" : "【 shoot 】\n\n",
+					"textcolor" : [ 0.996078431606293, 0.996078431606293, 0.996078431606293, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+					"bubbleusescolors" : 1,
+					"id" : "obj-10",
+					"linecount" : 4,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 879.0, 317.5, 394.5, 64.0 ],
+					"presentation_linecount" : 4,
+					"text" : "【 status 】切換狀態\n\n參數：\n1. status [ 一定要 ]（0~2，代表不同階段）",
+					"textcolor" : [ 0.996078431606293, 0.996078431606293, 0.996078431606293, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-39",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 507.75, 252.0, 88.0, 22.0 ],
+					"text" : "prepend status"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-35",
+					"maxclass" : "number",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 507.75, 203.5, 50.0, 22.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-31",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 523.25, 157.5, 87.0, 21.0 ],
+					"text" : "Shoot",
+					"textcolor" : [ 0.80392199754715, 0.898038983345032, 0.909803986549377, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-27",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 523.25, 143.0, 87.0, 21.0 ],
+					"text" : "Gyro",
+					"textcolor" : [ 0.80392199754715, 0.898038983345032, 0.909803986549377, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-20",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 523.25, 126.5, 87.0, 21.0 ],
+					"text" : "Light",
+					"textcolor" : [ 0.80392199754715, 0.898038983345032, 0.909803986549377, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-17",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 507.75, 102.5, 102.0, 20.0 ],
+					"text" : "STATUS"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"disabled" : [ 0, 0, 0 ],
+					"id" : "obj-8",
+					"itemtype" : 0,
+					"maxclass" : "radiogroup",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 507.75, 128.5, 102.5, 50.0 ],
+					"size" : 3,
+					"value" : 3
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-26",
 					"maxclass" : "newobj",
@@ -94,21 +219,21 @@
 								"filekind" : "audiofile",
 								"loop" : 0,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -118,21 +243,21 @@
 								"filekind" : "audiofile",
 								"loop" : 0,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -193,21 +318,21 @@
 								"filekind" : "audiofile",
 								"loop" : 0,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -232,21 +357,21 @@
 								"filekind" : "audiofile",
 								"loop" : 0,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -272,21 +397,21 @@
 								"filekind" : "audiofile",
 								"loop" : 0,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -296,21 +421,21 @@
 								"filekind" : "audiofile",
 								"loop" : 0,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -320,21 +445,21 @@
 								"filekind" : "audiofile",
 								"loop" : 0,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -357,7 +482,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 255.08331298828125, 515.0, 96.0, 22.0 ],
+					"patching_rect" : [ 293.08331298828125, 455.0, 96.0, 22.0 ],
 					"text" : "blink 100. 2 0 0"
 				}
 
@@ -434,7 +559,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 409.0, 327.0, 20.5, 66.0 ],
 					"size" : 4,
-					"value" : 1
+					"value" : 3
 				}
 
 			}
@@ -858,21 +983,21 @@
 								"filekind" : "audiofile",
 								"loop" : 1,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -900,13 +1025,13 @@
 					"patching_rect" : [ 518.5, 904.0, 59.0, 76.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 6.0,
+							"parameter_initial" : [ 0.0 ],
+							"parameter_shortname" : "live.gain~",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4,
 							"parameter_mmin" : -70.0,
-							"parameter_longname" : "live.gain~[2]",
-							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.gain~"
+							"parameter_longname" : "live.gain~[2]"
 						}
 
 					}
@@ -927,13 +1052,13 @@
 					"patching_rect" : [ 27.0, 932.0, 59.0, 76.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 6.0,
+							"parameter_initial" : [ 0.0 ],
+							"parameter_shortname" : "live.gain~",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4,
 							"parameter_mmin" : -70.0,
-							"parameter_longname" : "live.gain~[1]",
-							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.gain~"
+							"parameter_longname" : "live.gain~[1]"
 						}
 
 					}
@@ -954,13 +1079,13 @@
 					"patching_rect" : [ 289.5, 904.0, 59.0, 76.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 6.0,
+							"parameter_initial" : [ 0.0 ],
+							"parameter_shortname" : "live.gain~",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4,
 							"parameter_mmin" : -70.0,
-							"parameter_longname" : "live.gain~",
-							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.gain~"
+							"parameter_longname" : "live.gain~"
 						}
 
 					}
@@ -1002,21 +1127,21 @@
 								"filekind" : "audiofile",
 								"loop" : 1,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -1041,21 +1166,21 @@
 								"filekind" : "audiofile",
 								"loop" : 1,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -1081,21 +1206,21 @@
 								"selection" : [ 0.278846153846154, 0.0 ],
 								"loop" : 0,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -1121,21 +1246,21 @@
 								"filekind" : "audiofile",
 								"loop" : 1,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -1161,21 +1286,21 @@
 								"filekind" : "audiofile",
 								"loop" : 1,
 								"content_state" : 								{
+									"originallength" : [ 0.0, "ticks" ],
+									"originallengthms" : [ 0.0 ],
+									"play" : [ 0 ],
 									"mode" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"basictuning" : [ 440 ],
+									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"quality" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
+									"pitchshift" : [ 1.0 ],
 									"timestretch" : [ 0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"quality" : [ "basic" ],
-									"originallength" : [ 0.0, "ticks" ],
-									"speed" : [ 1.0 ],
-									"formant" : [ 1.0 ],
-									"originaltempo" : [ 120.0 ],
-									"basictuning" : [ 440 ],
-									"originallengthms" : [ 0.0 ],
-									"pitchcorrection" : [ 0 ],
-									"play" : [ 0 ],
-									"followglobaltempo" : [ 0 ]
+									"formant" : [ 1.0 ]
 								}
 
 							}
@@ -1200,7 +1325,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 728.0, 427.0, 394.5, 77.0 ],
+					"patching_rect" : [ 879.0, 231.5, 394.5, 77.0 ],
 					"text" : "【 light 】改變網頁亮度、顏色\n\n參數：\n1. percentage [ 一定要 ]（0~100，幾%的亮度）\n2. colorInd [ 預設 0 ]（0~3 ，代表顏色四種顏色的index）",
 					"textcolor" : [ 0.996078431606293, 0.996078431606293, 0.996078431606293, 1.0 ]
 				}
@@ -1215,7 +1340,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 728.0, 290.0, 183.0, 26.0 ],
+					"patching_rect" : [ 879.0, 89.5, 183.0, 26.0 ],
 					"text" : "FUNCTION 功能、參數",
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
@@ -1230,7 +1355,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 728.0, 315.0, 394.5, 104.0 ],
+					"patching_rect" : [ 879.0, 119.5, 394.5, 104.0 ],
 					"text" : "【 blink 】讓網頁閃爍\n\n參數：\n1. percentage [ 一定要 ]（0~100，幾%的手機一起閃）\n2. colorInd [ 預設 0 ]（0~3 ，代表顏色四種顏色的index）\n3. interval [ 預設 0 ]（0 代表只閃一次，單位ms）\n4. time_difference [ 預設 0 ]（代表同時閃的手機要不要有些微的時間差）",
 					"textcolor" : [ 0.996078431606293, 0.996078431606293, 0.996078431606293, 1.0 ]
 				}
@@ -1386,7 +1511,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2134,10 +2259,10 @@
 								"name" : "BEAP-Audio",
 								"default" : 								{
 									"color" : [ 0.278431, 0.839216, 1.0, 1.0 ],
+									"textcolor" : [ 0.862745, 0.870588, 0.878431, 0.698039 ],
 									"textcolor_inverse" : [ 0.862745, 0.870588, 0.878431, 0.698039 ],
 									"fontsize" : [ 10.0 ],
-									"accentcolor" : [ 0.442178, 0.455072, 0.451475, 1.0 ],
-									"textcolor" : [ 0.862745, 0.870588, 0.878431, 0.698039 ]
+									"accentcolor" : [ 0.442178, 0.455072, 0.451475, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2228,8 +2353,8 @@
 , 							{
 								"name" : "rsliderGold",
 								"default" : 								{
-									"color" : [ 0.646639, 0.821777, 0.854593, 1.0 ],
-									"bgcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+									"bgcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ],
+									"color" : [ 0.646639, 0.821777, 0.854593, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2339,7 +2464,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2583,6 +2708,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-32", 1 ],
 					"source" : [ "obj-106", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-11", 0 ]
 				}
 
 			}
@@ -2842,6 +2974,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-39", 0 ],
+					"source" : [ "obj-35", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-41", 0 ],
 					"source" : [ "obj-36", 0 ]
 				}
@@ -2865,6 +3004,14 @@
 				"patchline" : 				{
 					"destination" : [ "obj-57", 2 ],
 					"source" : [ "obj-38", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"midpoints" : [ 517.25, 435.0, 270.0, 435.0, 270.0, 423.0, 96.0, 423.0, 96.0, 465.0, 99.25, 465.0 ],
+					"source" : [ "obj-39", 0 ]
 				}
 
 			}
@@ -3096,6 +3243,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-35", 0 ],
+					"source" : [ "obj-8", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-37", 0 ],
 					"order" : 1,
 					"source" : [ "obj-80", 0 ]
@@ -3251,9 +3405,9 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-74" : [ "live.gain~[2]", "live.gain~", 0 ],
-			"obj-71" : [ "live.gain~", "live.gain~", 0 ],
 			"obj-72" : [ "live.gain~[1]", "live.gain~", 0 ],
+			"obj-71" : [ "live.gain~", "live.gain~", 0 ],
+			"obj-74" : [ "live.gain~[2]", "live.gain~", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -3261,108 +3415,10 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "max_sockets.js",
-				"bootpath" : "~/Downloads/two-ways-transmission-master/Max-sockets",
-				"patcherrelativepath" : ".",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "Max-sockets",
-				"bootpath" : "~/Downloads/two-ways-transmission-master",
+				"bootpath" : "~/Documents/Zonesound/two-ways-transmission",
 				"patcherrelativepath" : "..",
 				"type" : "fold",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "DEX_90_F#m_BlueStar_Vox_1.wav",
-				"bootpath" : "~/Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_BLUE_STAR",
-				"patcherrelativepath" : "../../../Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_BLUE_STAR",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "DEX_90_F#m_BlueStar_Pad.wav",
-				"bootpath" : "~/Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_BLUE_STAR",
-				"patcherrelativepath" : "../../../Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_BLUE_STAR",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "DEX_90_F#m_BlueStar_Melody.wav",
-				"bootpath" : "~/Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_BLUE_STAR",
-				"patcherrelativepath" : "../../../Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_BLUE_STAR",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "DEX_90_F#m_Dreamer_Pad_1.wav",
-				"bootpath" : "~/Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_DREAMER",
-				"patcherrelativepath" : "../../../Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_DREAMER",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "DEX_90_F#m_Dreamer_Pad_2b.wav",
-				"bootpath" : "~/Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_DREAMER",
-				"patcherrelativepath" : "../../../Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_DREAMER",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "DEX_90_F#m_BlueStar_Syn.wav",
-				"bootpath" : "~/Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_BLUE_STAR",
-				"patcherrelativepath" : "../../../Documents/User Loops/DIMENSIONS_EXPERIMENTAL_SOUNDSCAPES/SOUNDSCAPE_STEMS/DEX_90_F#_BLUE_STAR",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "oe_chst_musicbox_Em.wav",
-				"bootpath" : "~/Documents/User Loops/Organic Electronica - Wav/melodic shots/chord shots",
-				"patcherrelativepath" : "../../../Documents/User Loops/Organic Electronica - Wav/melodic shots/chord shots",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "oe_chst_musicbox_G.wav",
-				"bootpath" : "~/Documents/User Loops/Organic Electronica - Wav/melodic shots/chord shots",
-				"patcherrelativepath" : "../../../Documents/User Loops/Organic Electronica - Wav/melodic shots/chord shots",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "oe_chst_musicbox_C#m.wav",
-				"bootpath" : "~/Documents/User Loops/Organic Electronica - Wav/melodic shots/chord shots",
-				"patcherrelativepath" : "../../../Documents/User Loops/Organic Electronica - Wav/melodic shots/chord shots",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "AM1_Bell_Single_02.wav",
-				"bootpath" : "~/Documents/User Loops/ZEN_AMBIENT/AMI_SOUNDS_&_FX/AM1_BELLS",
-				"patcherrelativepath" : "../../../Documents/User Loops/ZEN_AMBIENT/AMI_SOUNDS_&_FX/AM1_BELLS",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "AM1_Eb4_TankDrum_Small_Open.wav",
-				"bootpath" : "~/Documents/User Loops/ZEN_AMBIENT/AMI_SOUNDS_&_FX/AM1_TANKDRUMS/TankDrum_Small_Open_Hits",
-				"patcherrelativepath" : "../../../Documents/User Loops/ZEN_AMBIENT/AMI_SOUNDS_&_FX/AM1_TANKDRUMS/TankDrum_Small_Open_Hits",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "oe_chst_distkeys_F7.wav",
-				"bootpath" : "~/Documents/User Loops/Organic Electronica - Wav/melodic shots/chord shots",
-				"patcherrelativepath" : "../../../Documents/User Loops/Organic Electronica - Wav/melodic shots/chord shots",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "oe_chst_distkeys_Fm7.wav",
-				"bootpath" : "~/Documents/User Loops/Organic Electronica - Wav/melodic shots/chord shots",
-				"patcherrelativepath" : "../../../Documents/User Loops/Organic Electronica - Wav/melodic shots/chord shots",
-				"type" : "WAVE",
 				"implicit" : 1
 			}
  ],

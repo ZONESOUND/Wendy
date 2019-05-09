@@ -19,6 +19,7 @@ for (var i = 0; i <= 3; i++) {
 
 
 function checkLightMode(data) {
+    if (data.mode == undefined) return;
     delay = 0;
     mode = data.mode
     if (mode == "blink") {

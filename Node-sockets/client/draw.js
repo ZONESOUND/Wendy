@@ -13,21 +13,26 @@ function setup() {
     rippleSetup()
 
 }
+var compassdir = 1;
+var alpha = 0;
+var beta = 0;
+var gamma = 0;
 
 function draw() {
 
     clear();
-    if(mode == 'stop') {
-        if (touches.length) {
-            for (var i = 0; i < touches.length; i++) {
-                current[touches[i].x][touches[i].y] = 255
-            }
-            send(touches.length / 1)
-        }
-        drawRipple()
-    } else {
-        rippleSetup()
-    }
+    
+    // if(mode == 'stop') {
+    //     if (touches.length) {
+    //         for (var i = 0; i < touches.length; i++) {
+    //             current[touches[i].x][touches[i].y] = 255
+    //         }
+    //         send(touches.length / 1)
+    //     }
+    //     drawRipple()
+    // } else {
+    //     rippleSetup()
+    // }
     
     if(!start) {
         drawTitleText()

@@ -29,26 +29,34 @@ io.on('connection', (socket, req) => {
         io.emit('maxRecieve', data)
     })
 
-    socket.on('send',(data) => { //from MAX
+    socket.on('maxSend',(data) => { //from MAX
         //console.log("send");
-        var send_client = connection_client;
-        if (interval != null) clearInterval(interval);
-        if (data.mode == "blink") {
-            send_client = choose_client(data.percentage);
-            // console.log(send_client);
-            //loop_blink = data.keepBlink;
+        if (data.mode != undefined) {
+            var send_client = connection_client;
 
-            if (data.keepBlink) {
-                interval = setInterval(function(){
-                    blink(data, choose_client(data.percentage));     
-                }, data.keepBlink);
-            }else {
-                //data.mode = 'stop'
-                blink(data, choose_client(data.percentage));
-            }
+            if (interval != null) clearInterval(interval);
+            if (data.mode == "blink") {
+                send_client = choose_client(data.percentage);
+                if (data.keepBlink) {
+                    interval = setInterval(function(){
+                        data.duration = duration;
+                        data.uuid = choose_client(data.percentage);
+                        io.emit('clientRecieve', data);
+                    }, data.keepBlink);
+                }
+            } 
+            data.duration = duration;
+            data.uuid = send_client;
+            //blink(data, send_client);
         } 
-        blink(data, send_client);
+        io.emit('clientRecieve', data);
+
+    })
+
+    socket.on('clientSend',(data) => { //from client
         
+        io.emit('maxRecieve', data);
+
     })
 
     socket.on('connected', (data) => {
@@ -83,17 +91,17 @@ server.listen(port, function listening() {
     console.log("Listening on %d", server.address().port);
 });
 
-function blink(data, send_client) {
-    io.emit('broadcast', {
-        uuid: send_client,
-        percentage: data.percentage,
-        mode: data.mode,
-        random: data.random,
-        order: data.colorInd,
-        duration: duration
+// function blink(data, send_client) {
+//     io.emit('clientRecieve', {
+//         uuid: send_client,
+//         percentage: data.percentage,
+//         mode: data.mode,
+//         random: data.random,
+//         order: data.colorInd,
+//         duration: duration
 
-    });
-}
+//     });
+// }
 
 function choose_client(percentage) {
     var send_client = connection_client.sort(randomsort);
