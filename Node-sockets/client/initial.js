@@ -14,8 +14,7 @@ function initial() {
     }
     // playSound()
     // $(document).on(event, sound);
-    document.removeEventListener
-    (event,initial)
+    document.removeEventListener(event,initial)
     start = true
 
 }
