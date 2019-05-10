@@ -20,7 +20,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
         window.addEventListener("deviceorientation", handleOrientation, false);
         setTimeout(() => {
             if(compassdir == -1000) {
-                alert('Please Open the DeviceOrientation in Safari Setting！')
+                alert('Please Open the DeviceOrientation in Safari Setting，and Reload the Page！')
             }
         }, 300);
     } else {
