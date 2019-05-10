@@ -12,20 +12,21 @@ let handleOrientation = () => {
     }
 }
 
+
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     device_event = 'touchstart'
     if (window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", handleOrientation, false);
     } else {
-        console.log("device does not support DeviceOrientation");
+        alert('device does not support DeviceOrientation')
+        // console.log("device does not support DeviceOrientation");
     }
 }
 
 $(document).ready(function () {
     document.addEventListener(device_event, initial)
     document.addEventListener('scroll', noScroll)
-
-
 });
 
 
