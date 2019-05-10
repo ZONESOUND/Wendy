@@ -37,8 +37,7 @@ $(document).ready(function() {
 
 function checkShootStatus(data) {
 	if (data.status == "Shoot") {
-		$("button").addClass("glow");
-		
+		$(".inside-btn").addClass("glow");
 	}
 }
 

@@ -20,12 +20,21 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
         window.addEventListener("deviceorientation", handleOrientation, false);
         setTimeout(() => {
             if(compassdir == -1000) {
-                alert('Please Open the DeviceOrientation in Safari Setting，and Reload the Page！')
+                Swal.fire({
+                    // title: 'Notice!',
+                    text: 'Please turn on your orientation setting.',
+                    imageUrl: './img/notice.gif',
+                    imageWidth: 230,
+                    imageHeight: 380,
+                    imageAlt: 'Notice',
+                    padding: '1em',
+                    animation: true,
+                    heightAuto: true
+                })
             }
         }, 300);
     } else {
         alert('device does not support DeviceOrientation')
-        // console.log("device does not support DeviceOrientation");
     }
 }
 

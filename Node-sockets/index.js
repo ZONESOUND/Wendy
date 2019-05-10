@@ -16,13 +16,15 @@ var blink_interval = 2000;
 var currentTime = new Date()
 
 io.on('connection', (socket, req) => {
+
     socket.emit('welcome', {
         'welcome': 'Welcome!!'
     })
-
-
-    socket.on('message',(data) => {
-        //console.log(data);
+    
+    socket.on('server', () => {
+        socket.emit('serverDisplay', {
+            'clientList': connection_client
+        })
     })
 
     socket.on('userfeedback', (data) => {
@@ -57,14 +59,15 @@ io.on('connection', (socket, req) => {
     })
 
     socket.on('clientSend',(data) => { //from client
-        
         io.emit('maxRecieve', data);
-
     })
 
     socket.on('connected', (data) => {
         connection_client.push(data.uuid)
         console.log(connection_client.length)
+        io.emit('serverDisplay', {
+            'clientList': connection_client
+        })
     })
 
     socket.on('disconnected',(data) => {
@@ -72,7 +75,10 @@ io.on('connection', (socket, req) => {
         var index = connection_client.indexOf(data.uuid)
         connection_client.splice(index, 1)
         console.log('disconnectd:',data)
-        console.log(connection_client.length)
+        io.emit('serverDisplay', {
+            'clientList': connection_client
+        })
+        
     })
 
     // setInterval(() => {

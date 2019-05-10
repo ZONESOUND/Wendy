@@ -5,12 +5,12 @@ body {
     --my-variable-name: #999999;
 }
 
-img {
+/* img {
   position: absolute;
   bottom: -30%;
   width: 100%;
   left: 0;
-}
+} */
 
 .outer_panel {
   /*opacity: 0;*/
@@ -42,7 +42,7 @@ img {
   margin-left: 20px;
 }
 
-button {
+.inside-btn {
   margin-left: 5px;
   margin-top: 5px;
   outline: none;

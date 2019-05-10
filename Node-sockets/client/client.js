@@ -18,6 +18,10 @@ socket.on('connect', () => {
     
 })
 
+socket.on('disconnect', function () {
+    console.log('user disconnected');
+});
+
 
 function send(data) {
     socket.emit("clientSend", data);
