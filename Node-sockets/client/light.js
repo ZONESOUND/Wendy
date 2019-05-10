@@ -58,7 +58,7 @@ function checkLightMode(data) {
         }
     } else if (mode == "light") {
         direction = 'normal';
-        duration = 0;
+        duration = 800;
         loopTime = 1;
         if (animation != null) {
             animation.pause();

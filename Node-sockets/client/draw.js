@@ -13,10 +13,6 @@ function setup() {
     rippleSetup()
 
 }
-var compassdir = 1;
-var alpha = 0;
-var beta = 0;
-var gamma = 0;
 
 function draw() {
 

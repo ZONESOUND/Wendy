@@ -17,8 +17,10 @@ $(document).ready(function() {
         	$("#"+id).prop('disabled',false);
         }, shootCD, bid);
 	});
-})
 
+	
+
+})
 
 let handleOrientation = () => {
 	if (event.webkitCompassHeading) {
@@ -33,6 +35,8 @@ if (window.DeviceOrientationEvent) {
 } else {
 	console.log("device does not support DeviceOrientation");
 }
+
+
 
 
 /*
