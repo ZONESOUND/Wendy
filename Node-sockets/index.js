@@ -63,7 +63,10 @@ io.on('connection', (socket, req) => {
     })
 
     socket.on('connected', (data) => {
-        connection_client.push(data.uuid)
+        if(!connection_client.includes(data.uuid)) {
+            connection_client.push(data.uuid)
+        }
+        
         console.log(connection_client.length)
         io.emit('serverDisplay', {
             'clientList': connection_client

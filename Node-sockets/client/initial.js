@@ -4,7 +4,7 @@ var start = false
 var device_event = 'click'
 var compassdir = -1000;
 var reload = false
-
+var uuid = localStorage.getItem("uuid")
 let handleOrientation = () => {
     if (event.webkitCompassHeading) {
         compassdir = event.webkitCompassHeading;
@@ -14,11 +14,11 @@ let handleOrientation = () => {
 }
 
 
-if (performance.navigation.type == 1) {
-    reload = true
-} else {
-    reload = false
-}
+// if (performance.navigation.type == 1) {
+//     reload = true
+// } else {
+//     reload = false
+// }
 
 
 
