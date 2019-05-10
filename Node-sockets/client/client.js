@@ -6,9 +6,12 @@ var uuid;
 socket.on('connect', () => {
     console.log("connect");
     uuid = generate_uuid()
-    socket.emit('connected', {
-        uuid: uuid
-    })
+    if(!reload) {
+        socket.emit('connected', {
+            uuid: uuid
+        })
+    }
+
 
     socket.on('clientRecieve', (data) => {
         console.log(data.status)

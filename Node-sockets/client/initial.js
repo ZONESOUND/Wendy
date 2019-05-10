@@ -3,6 +3,7 @@ var isMobile = false
 var start = false
 var device_event = 'click'
 var compassdir = -1000;
+var reload = false
 
 let handleOrientation = () => {
     if (event.webkitCompassHeading) {
@@ -10,6 +11,13 @@ let handleOrientation = () => {
     } else {
         compassdir = event.alpha;
     }
+}
+
+
+if (performance.navigation.type == 1) {
+    reload = true
+} else {
+    reload = false
 }
 
 
