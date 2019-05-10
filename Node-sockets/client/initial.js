@@ -14,14 +14,6 @@ let handleOrientation = () => {
 }
 
 
-// if (performance.navigation.type == 1) {
-//     reload = true
-// } else {
-//     reload = false
-// }
-
-
-
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     device_event = 'touchstart'
     if (window.DeviceOrientationEvent) {
