@@ -34,19 +34,21 @@ io.on('connection', (socket, req) => {
         //console.log("send");
         if (data.mode != undefined) {
             var send_client = connection_client;
-
+            
             if (interval != null) clearInterval(interval);
             if (data.mode == "blink") {
                 send_client = choose_client(data.percentage);
                 if (data.keepBlink) {
                     interval = setInterval(function(){
-                        data.duration = duration;
+                        if (data.duration == undefined)
+                            data.duration = duration;
                         data.uuid = choose_client(data.percentage);
                         io.emit('clientRecieve', data);
                     }, data.keepBlink);
                 }
             } 
-            data.duration = duration;
+            if (data.duration == undefined)
+                data.duration = duration;
             data.uuid = send_client;
             //blink(data, send_client);
         } 

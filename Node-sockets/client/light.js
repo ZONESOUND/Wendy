@@ -38,28 +38,35 @@ function checkLightMode(data) {
         color = data.color;
     }
 
-
     if (mode == "blink") {
         if (data.uuid.includes(uuid)) {
             delay = Math.random()*data.random;
             // console.log("delay: "+delay);
             duration = data.duration;
             direction = 'alternate';
-
+            if (data.endDelay == undefined)
+                endDelay = 0;
+            else endDelay = data.endDelay;
+            if (data.times == undefined)
+                loopTime = 1;
+            else loopTime = data.times;
             changeColor(1, color, blink_sound[order]);
-            setTimeout(function() {
+            //setTimeout(function() {
                 // if (blink_sound.state == "stopped") {
                 //     blink_sound.restart();
                 // }
                 //console.log("blink: "+blink_sound.state);
-            }, delay);
+            //}, delay);
             //$('body').css('background-color', `${data.color}`)
             
         }
     } else if (mode == "light") {
         direction = 'normal';
-        duration = 800;
+        if (data.duration == undefined)
+            duration = 800;
+        else duration = data.duration;
         loopTime = 1;
+        endDelay = 0;
         if (animation != null) {
             animation.pause();
             animation = null;
@@ -87,6 +94,7 @@ function playSound(sound) {
 function changeColor(lightness, rgb, sound) {
     //alert(rgb);
     if (animation != null) return;
+    console.log('change Color!'+ rgb);
     // console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
     if(direction != 'normal') {
         setTimeout(function () {
@@ -99,9 +107,10 @@ function changeColor(lightness, rgb, sound) {
         targets: '#inner',  
         duration: duration,
         direction: direction,
-        //background: "hsla(0, 100%, 100%, 1)",
-        background: "rgb("+ rgb +")",
-        opacity: lightness,
+        background: "rgba("+rgb+", "+lightness.toString()+")",
+        //background: "rgb("+ rgb +")",
+        //opacity: lightness,
+        //opacity: 0
         //background: "hsla(" + colors[order] + "," + lightness.toString() + ")",
         endDelay: endDelay,
         delay: delay,

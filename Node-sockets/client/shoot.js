@@ -1,5 +1,4 @@
 var shootCD = 4000;
-var compassdir = 0;
 
 
 $(document).ready(function() {
@@ -22,32 +21,19 @@ $(document).ready(function() {
 
 })
 
-let handleOrientation = () => {
-	if (event.webkitCompassHeading) {
-		compassdir = event.webkitCompassHeading;
-	} else {
-		compassdir = event.alpha;
-	}
-}
+// let handleOrientation = () => {
+// 	if (event.webkitCompassHeading) {
+// 		compassdir = event.webkitCompassHeading;
+// 	} else {
+// 		compassdir = event.alpha;
+// 	}
+// }
 
-if (window.DeviceOrientationEvent) {
-	window.addEventListener("deviceorientation", handleOrientation, true);
-} else {
-	console.log("device does not support DeviceOrientation");
-}
-
-
-
-
-/*
-
-getComputedStyle(document.documentElement)
-    .getPropertyValue('--my-variable-name'); // #999999
-
-document.documentElement.style
-    .setProperty('--my-variable-name', 'pink');
-
-*/
+// if (window.DeviceOrientationEvent) {
+// 	window.addEventListener("deviceorientation", handleOrientation, true);
+// } else {
+// 	console.log("device does not support DeviceOrientation");
+// }
 
 function checkShootStatus(data) {
 	if (data.status == "Shoot") {
@@ -66,3 +52,13 @@ function display(opacity, obj) {
         loop: false
     });
 }
+
+/*
+
+getComputedStyle(document.documentElement)
+    .getPropertyValue('--my-variable-name'); // #999999
+
+document.documentElement.style
+    .setProperty('--my-variable-name', 'pink');
+
+*/

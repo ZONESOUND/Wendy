@@ -7,8 +7,8 @@
 
 
 const Max = require("max-api");
-var socket = require('socket.io-client')('https://two-ways-transmission.herokuapp.com/');
-//var socket = require('socket.io-client')('http://localhost:8000');
+//var socket = require('socket.io-client')('https://two-ways-transmission.herokuapp.com/');
+var socket = require('socket.io-client')('http://localhost:8000');
 var prevTime = new Date();
 var prevTime_recieve = new Date();
 var status_arr = ["Light", "Gyro", "Shoot"]
@@ -85,9 +85,50 @@ socket.on('connect', (data) => {
 		sender(fillLightData("blink", args[0]/100., colorInd, random, keepBlink, colorStr));
 
 	});
+
+	Max.addHandler("light_dict", (...args) => {
+		data = args[0]
+		for (var key in data) {
+			if (data[key] == "*") {
+				delete data[key];
+			}
+		}
+		if ("r" in data && "g" in data && "b" in data) {
+			data.color = data["r"]+","+data["g"]+","+data["b"];
+			delete data["r"];
+			delete data["g"];
+			delete data["b"];
+		}
+		if ("percentage" in data) data["percentage"] /= 100;
+		if ("duration" in data) {
+			if (data["duration"] == 0) delete data["duration"];
+		}
+		if ("times" in data) {
+			if (data["times"] == 0) delete data["times"];
+		}
+		sender(fillData(data));
+		//sender()
+	});
 })
 
-function fillLightData(mode, percentage, colorInd=0, random=0, keepBlink=1, color="") {
+
+function fillData(data) {
+	default_data = {
+		status: status,
+		mode: "blink",
+		percentage: 1,
+		keepBlink: 0,
+		order: 0,
+		random: 0
+	};
+	for (var key in data) {
+      default_data[key] = data[key];
+    }
+    return default_data;
+}
+
+
+function fillLightData(mode, percentage, colorInd=0, random=0, keepBlink=0, color="") {
 	data = {
 		status: status,
 		mode: mode,
