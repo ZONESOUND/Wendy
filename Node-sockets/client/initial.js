@@ -23,7 +23,11 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
 $(document).ready(function () {
     document.addEventListener(device_event, initial)
+    document.addEventListener('scroll', noScroll)
+
+
 });
+
 
 
 function initial() {
@@ -32,4 +36,8 @@ function initial() {
     }
     noSleep.enable();
     start = true
+}
+
+function noScroll() {
+    window.scrollTo(0, 0)
 }
