@@ -1,7 +1,7 @@
 const MAX_STARS = 400;
 let speed = 20,stars = [];
 let cols, rows,current = [],previous = [],damping = 0.9;
-
+let r = 10
 
 
 function setup() {
@@ -35,7 +35,6 @@ function draw() {
     }
 
     starField()
-    
 }
 
 function windowResized() {
@@ -53,11 +52,19 @@ function starField() {
         translate(windowWidth / 2, windowHeight / 2);
     }
 
-   
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i].update();
         stars[i].show();
     }
+    if(r < 1000 && start) {
+        r += 1*(r/10)
+        circle(0, 0, r)
+        fill(255);
+        speed+= 1
+    }else {
+        speed = 20
+    }
+
 }
 
 

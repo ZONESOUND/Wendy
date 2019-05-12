@@ -19,7 +19,7 @@ var mode = 'stop';
 
 
 for (var i = 0; i <= 3; i++) {
-    blink_sound[i] = new Tone.Player(`./music/LTVM_A_Oneshot_0${i+1}.wav`).toMaster();
+    blink_sound[i] = new Tone.Player(`./music/sample_0${i+1}.wav`).toMaster();
 }
 
 
