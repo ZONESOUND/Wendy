@@ -56,14 +56,14 @@ function starField() {
         stars[i].update();
         stars[i].show();
     }
-    if(r < 1000 && start) {
-        r += 1*(r/10)
-        circle(0, 0, r)
-        fill(255);
-        speed+= 1
-    }else {
-        speed = 20
-    }
+    // if(r < 1000 && start) {
+    //     r += 1*(r/10)
+    //     circle(0, 0, r)
+    //     fill(255);
+    //     speed+= 1
+    // }else {
+    //     speed = 20
+    // }
 
 }
 
