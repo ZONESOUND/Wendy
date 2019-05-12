@@ -1,9 +1,9 @@
 var noSleep = new NoSleep();
-var isMobile = false
 var start = false
 var device_event = 'click'
 var compassdir = -1000;
-var reload = false
+var recieve_button_click = 0;
+
 var uuid = localStorage.getItem("uuid")
 let handleOrientation = () => {
     if (event.webkitCompassHeading) {

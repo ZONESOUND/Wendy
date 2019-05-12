@@ -32,11 +32,9 @@ io.on('connection', (socket, req) => {
         io.emit('maxRecieve', data)
     })
 
-    socket.on('maxSend',(data) => { //from MAX
-        //console.log("send");
+    socket.on('maxSend',(data) => { 
         if (data.mode != undefined) {
             var send_client = connection_client;
-            
             if (interval != null) clearInterval(interval);
             if (data.mode == "blink") {
                 send_client = choose_client(data.percentage);
@@ -60,6 +58,9 @@ io.on('connection', (socket, req) => {
 
     socket.on('clientSend',(data) => { //from client
         io.emit('maxRecieve', data);
+        if(data.compass) {
+            io.emit('clientRecieve', data);
+        }
     })
 
     socket.on('connected', (data) => {

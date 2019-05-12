@@ -5,22 +5,18 @@ var loopTime = 1;
 var direction = 'alternate';
 var animeing = false;
 var animation = null;
-var colors = ["0, 100%, 100%",
-"58, 100%, 68%",
-"0, 100%, 68%",
-"196, 100%, 68%"]
-var rgbcolors = ["255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255"
-]
+var colors = [ "0, 100%, 100%", "58, 100%, 68%", "0, 100%, 68%", "196, 100%, 68%"]
+var rgbcolors = ["255, 255, 255", "255, 250, 92", "255, 92, 92", "92, 211, 255"]
 var blink_sound = []
 var mode = 'stop';
-
 
 for (var i = 0; i <= 3; i++) {
     blink_sound[i] = new Tone.Player(`./music/sample_0${i+1}.wav`).toMaster();
 }
+
+
+
+
 
 
 function checkLightMode(data) {
@@ -41,7 +37,6 @@ function checkLightMode(data) {
     if (mode == "blink") {
         if (data.uuid.includes(uuid)) {
             delay = Math.random()*data.random;
-            // console.log("delay: "+delay);
             duration = data.duration;
             direction = 'alternate';
             if (data.endDelay == undefined)
@@ -72,7 +67,6 @@ function checkLightMode(data) {
             animation = null;
         }
         
-        //console.log("light:"+data.percentage.toString());
         changeColor(data.percentage, color, blink_sound[order]);
     } 
 

@@ -1,7 +1,13 @@
 const MAX_STARS = 400;
 let speed = 20,stars = [];
-let cols, rows,current = [],previous = [],damping = 0.9;
-let r = 10
+let meteors = []
+let color_array = [
+    [255,255,255],
+    [0  , 255, 255],
+    [255,   0, 255],
+    [255, 255,   0],
+]
+
 
 
 function setup() {
@@ -10,42 +16,51 @@ function setup() {
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i] = new Star();
     }
-    // rippleSetup()
     frameRate(60)
-
 }
+
 
 function draw() {
-
     clear();
-    // if(mode == 'stop') {
-    //     if (touches.length) {
-    //         for (var i = 0; i < touches.length; i++) {
-    //             current[touches[i].x][touches[i].y] = 255
-    //         }
-    //         send(touches.length / 1)
-    //     }
-    //     drawRipple()
-    // } else {
-    //     rippleSetup()
-    // }
-    
+
     if(!start) {
         drawTitleText()
+    }else {
+        if (meteors.length) {
+            meteorField()
+        }
     }
 
+    if (click_number) {
+        createMeteor(click_number)
+        click_number = 0
+    }
+
+    if(recieve_button_click) {
+        createMeteor(recieve_button_click)
+        recieve_button_click = 0
+    }
+
+
+
+
     starField()
+    
 }
+
+
+
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i] = new Star();
     }
-    //rippleSetup()
 }
 
+// function mousePressed() {
 
+// }
 
 function starField() {
     if(start) {
@@ -56,33 +71,43 @@ function starField() {
         stars[i].update();
         stars[i].show();
     }
-    // if(r < 1000 && start) {
-    //     r += 1*(r/10)
-    //     circle(0, 0, r)
-    //     fill(255);
-    //     speed+= 1
-    // }else {
-    //     speed = 20
-    // }
 
 }
 
 
+function meteorField() {
+    for (var i = 0; i < meteors.length; i++) {
+        meteors[i].update();
+        if(meteors[i].r > 100) {
+            meteors.splice(i,1)
+        }else {
+            meteors[i].show();
+        }
+    }
+}
+
+
+function createMeteor(index) {
+    for (var i = 0; i < Math.floor(9 * Math.random()); i++) {
+        var offset_x = Math.random() * 500 - 250
+        var offset_y = Math.random() * 500 - 250
+        meteors.push(new Meteor(offset_x, offset_y, color_array[index-1]))
+    }
+}
+
+
+
 
 function drawTitleText() {
-
     translate(windowWidth/2, windowHeight/2);
-
     const scaleFactor = 0.5;
     const maxLimit = 200;
-
     if (frameCount < maxLimit) {
         const currentScale = map(frameCount, 0, maxLimit, 0, scaleFactor);
         scale(1.5 + currentScale);
     } else {
         scale(1.5 + scaleFactor);
     }
-
     stroke(255);
     strokeWeight(2);
     rectMode(CENTER);
@@ -122,7 +147,6 @@ class Star {
         let x = this.x,
             y = this.y,
             z = this.z,
-            r = map(z, 0, width, 16, 0),
             sx = map(x / z, 0, 1, 0, width),
             sy = map(y / z, 0, 1, 0, height),
             px = map(x / this.pz, 0, 1, 0, width),
@@ -135,5 +159,41 @@ class Star {
 
         stroke(255)
         line(px, py, sx, sy)
+    }
+}
+
+
+class Meteor {
+    constructor(offset_x, offset_y, color_) {
+        this.x = windowWidth / 2 + offset_x
+        this.y = windowWidth / 2 + offset_y
+        this.dx = (offset_x > 0) ? 1 : -1
+        this.dy = (offset_y > 0) ? 1 : -1
+        this.r = 3
+        this.color_ = color_
+    }
+
+    update() {
+        this.r += 1 + (this.r / 10)
+        this.x -= (1 + (this.x / 400)) * this.dx
+        this.y -= (1 + (this.y / 400)) * this.dy
+    }
+
+    show() {
+
+        for (var i = 0; i < 100; i++) {
+            var d = 1 + (i * 2);
+            var alpha = 255 - (i * this.r);
+            noStroke();
+            fill(this.color_[0], this.color_[1], this.color_[2], alpha);
+            ellipse(this.x, this.y, d, d);
+        }
+        for (var i = 0; i < 65; i++) {
+            var d = 1 + (i * 1.5);
+            var alpha = 255 - (i * this.r);
+            noStroke();
+            fill(255, 255, 255, alpha);
+            ellipse(this.x, this.y, d, d);
+        }
     }
 }

@@ -1,39 +1,28 @@
 var shootCD = 4000;
-
-
+var click_number = 0;
 $(document).ready(function() {
 
-	$("button").click(function(e) {
+	$(".inside-btn").click(function(e) {
 		//alert($(this).find(".subclass"));
 		//display(0, ".outer_button");
+		button_click = true;
 		$(this).removeClass("glow");
 		$(this).prop('disabled',true);
 		var bid = $(this).attr("id")
-		var number = parseInt(bid.split("-")[1]);
+		number = parseInt(bid.split("-")[1]);
+		click_number = number
 		send({shoot: number, compass: compassdir});
 		setTimeout(function(id) {
 			$("#"+id).addClass("glow");
         	$("#"+id).prop('disabled',false);
-        }, shootCD, bid);
+		}, shootCD, bid);
+
 	});
 
 	
 
 })
 
-// let handleOrientation = () => {
-// 	if (event.webkitCompassHeading) {
-// 		compassdir = event.webkitCompassHeading;
-// 	} else {
-// 		compassdir = event.alpha;
-// 	}
-// }
-
-// if (window.DeviceOrientationEvent) {
-// 	window.addEventListener("deviceorientation", handleOrientation, true);
-// } else {
-// 	console.log("device does not support DeviceOrientation");
-// }
 
 function checkShootStatus(data) {
 	if (data.status == "Shoot") {
@@ -51,13 +40,3 @@ function display(opacity, obj) {
         loop: false
     });
 }
-
-/*
-
-getComputedStyle(document.documentElement)
-    .getPropertyValue('--my-variable-name'); // #999999
-
-document.documentElement.style
-    .setProperty('--my-variable-name', 'pink');
-
-*/

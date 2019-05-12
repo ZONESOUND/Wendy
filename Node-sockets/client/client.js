@@ -5,7 +5,6 @@ const socket = io('https://two-ways-transmission.herokuapp.com/')
 
 socket.on('connect', () => {
 
-    console.log("connect");
     if(uuid == null) {
         uuid = generate_uuid()
         console.log(uuid)
@@ -17,9 +16,11 @@ socket.on('connect', () => {
         uuid: uuid
     })
 
-
     socket.on('clientRecieve', (data) => {
-        console.log(data.status)
+        if(data.compass) {
+            recieve_button_click = data.shoot
+            return
+        }
         checkLightMode(data);  
         checkShootStatus(data);
     });
