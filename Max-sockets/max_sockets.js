@@ -43,6 +43,7 @@ socket.on('connect', (data) => {
 	Max.addHandler("status", (...args) => {
 		Max.post("status:" + status_arr[args[0]]);
 		status = status_arr[args[0]];
+		sender({status: status});
 		
 	});
 
