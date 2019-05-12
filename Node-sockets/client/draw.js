@@ -36,11 +36,10 @@ function draw() {
         click_number = 0
     }
 
-    if(recieve_button_click) {
+    if (recieve_button_click) {
         createMeteor(recieve_button_click)
         recieve_button_click = 0
     }
-
 
 
 
@@ -58,9 +57,6 @@ function windowResized() {
     }
 }
 
-// function mousePressed() {
-
-// }
 
 function starField() {
     if(start) {
@@ -89,8 +85,8 @@ function meteorField() {
 
 function createMeteor(index) {
     for (var i = 0; i < Math.floor(9 * Math.random()); i++) {
-        var offset_x = Math.random() * 500 - 250
-        var offset_y = Math.random() * 500 - 250
+        var offset_x = Math.random() * (windowWidth  / 2)  - (windowWidth  / 4)
+        var offset_y = Math.random() * (windowHeight / 2)  - (windowHeight / 4)
         meteors.push(new Meteor(offset_x, offset_y, color_array[index-1]))
     }
 }
@@ -165,8 +161,8 @@ class Star {
 
 class Meteor {
     constructor(offset_x, offset_y, color_) {
-        this.x = windowWidth / 2 + offset_x
-        this.y = windowWidth / 2 + offset_y
+        this.x = windowWidth  / 2 + offset_x
+        this.y = windowHeight / 2 + offset_y
         this.dx = (offset_x > 0) ? 1 : -1
         this.dy = (offset_y > 0) ? 1 : -1
         this.r = 3
