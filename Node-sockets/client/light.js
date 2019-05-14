@@ -5,6 +5,7 @@ var loopTime = 1;
 var direction = 'alternate';
 var animeing = false;
 var animation = null;
+
 var colors = ["0, 100%, 100%",
 "58, 100%, 68%",
 "0, 100%, 68%",
@@ -13,21 +14,44 @@ var colors = ["0, 100%, 100%",
 var rgbcolors = ["255, 255, 255", 
 "255, 250, 92",
 "255, 92, 92",
+"92, 211, 255",
+"255, 255, 255", 
+"255, 250, 92",
+"255, 92, 92",
+"92, 211, 255",
+"255, 255, 255", 
+"255, 250, 92",
+"255, 92, 92",
+"92, 211, 255",
+"255, 255, 255", 
+"255, 250, 92",
+"255, 92, 92",
+"92, 211, 255",
+"255, 255, 255", 
+"255, 250, 92",
+"255, 92, 92",
 "92, 211, 255"
 ]
+
 var blink_sound = []
 var fx_sound = [];
 var mode = 'stop';
+var fft, meter;
+var waveform;
 
-
-for (var i = 0; i <= 3; i++) {
-    blink_sound[i] = new Tone.Player(`./music/sample_0${i+1}.wav`).toMaster();
-}
-// for (var i=0; i<2; i++) {
-//     for (var j=0; j<4; j++) {
-//         fx_sound[i*4+j] = new Tone.Player(`./music/FX/FX${i+1}_${j+1}.wav`).toMaster();
-//     }
+// for (var i = 0; i <= 3; i++) {
+//     blink_sound[i] = new Tone.Player(`./music/sample_0${i+1}.wav`).toMaster();
 // }
+
+meter = new Tone.Meter('level');
+fft = new Tone.Analyser('fft', 64);
+waveform = new Tone.Analyser('waveform', 32);
+
+for (var i=0; i<4; i++) {
+    for (var j=0; j<5; j++) {
+        blink_sound[i*5+j] = new Tone.Player(`./music/iPad_FX_Samples/sample_${i+1}-${j+1}.wav`).connect(meter).connect(waveform).connect(fft).toMaster();
+    }
+}
 
 
 function checkLightMode(data) {
@@ -36,8 +60,10 @@ function checkLightMode(data) {
     mode = data.mode
     console.log(mode)
     order = data.order;
+    console.log(order);
     if (order >= rgbcolors.length) {
         order = Math.floor(Math.random()*rgbcolors.length);
+
     }
     if (data.color == undefined) {
         color = rgbcolors[order];
@@ -48,16 +74,19 @@ function checkLightMode(data) {
     if (mode == "blink") {
         if (data.uuid.includes(UUID)) {
             delay = Math.random()*data.random;
-            // console.log("delay: "+delay);
-            duration = data.duration;
-            direction = 'alternate';
-            if (data.endDelay == undefined)
-                endDelay = 0;
-            else endDelay = data.endDelay;
-            if (data.times == undefined)
-                loopTime = 1;
-            else loopTime = data.times;
-            changeColor(1, color, blink_sound[order]);
+            if (data.self != undefined) {
+                genColorFromSound(order, color);
+            } else {
+                duration = data.duration;
+                direction = 'alternate';
+                if (data.endDelay == undefined)
+                    endDelay = 0;
+                else endDelay = data.endDelay;
+                if (data.times == undefined)
+                    loopTime = 1;
+                else loopTime = data.times;
+                changeColor(1, color, blink_sound[order]);
+            }
             //setTimeout(function() {
                 // if (blink_sound.state == "stopped") {
                 //     blink_sound.restart();
@@ -79,11 +108,59 @@ function checkLightMode(data) {
             animation = null;
         }
         
-        //console.log("light:"+data.percentage.toString());
         changeColor(data.percentage, color, blink_sound[order]);
     }
 
 }
+
+var soundInt = null;
+var euro;
+var multi = 7;
+var colorAnime = null;
+
+function genColorFromSound(ind, color) {
+    blink_sound[ind].start();
+    euro = new OneEuroFilter(200);
+    if (soundInt != null) clearInterval(soundInt);
+
+    soundInt = setInterval(function(ind, color) {
+        if (blink_sound[ind].state == "stopped") {
+            clearInterval(soundInt);
+            soundInt = null;
+            
+            anime({
+                targets: '#inner',  
+                duration: 1000,
+                background: `rgba(255,255,255,0)`,
+                easing: 'easeInOutSine',
+                delay: 1
+            });
+
+        } else {
+            
+            var waveData = waveform.getValue();
+            var max = Math.max.apply(Math, waveData);
+            var min = Math.min.apply(Math, waveData)*-1;
+            var r = Math.max(max, min);
+            r *= multi;
+            if (r > 1) {
+                r = 1;
+            } else if (r < 0.2 && r != 0) {
+                r = 0.2;
+            }
+
+            var euroOut = euro.filter(r);
+            // $("#inner").css("background", `rgba(${color},${euroOut})`);
+            anime({
+                targets: '#inner',  
+                background: `rgba(${color},${euroOut})`
+            });
+        }
+        
+    }, 1, ind, color);
+
+}
+
 
 
 function playSound(sound) {
@@ -95,49 +172,6 @@ function playSound(sound) {
     } 
 
 }
-
-var soundInt;
-var maxV = 0;
-var vList = [];
-var euro;
-function changeColorWithSound() {
-    euro = new OneEuroFilter(100);
-
-    soundInt = setInterval(function(){
-        if (!sound.isPlaying) clearInterval(soundInt);
-        if(amplitude.getLevel() > maxV) {
-            maxV = amplitude.getLevel();
-        }
-        var t = euro.filter(3*amplitude.getLevel())
-        console.log(t);
-        anime({
-            targets: '#inner',  
-            duration: 10,
-            background: `rgba(255,255,255,${t})`,
-            easing: 'easeInOutQuad'
-        });
-    }, 10);
-    //changeColor(amplitude.getLevel(), "255,255,255", );
-}
-
-function smooth (list, degree) {
-    var win = degree*2-1;
-    weight = _.range(0, win).map(function (x) { return 1.0; });
-    weightGauss = [];
-    for (i in _.range(0, win)) {
-        i = i-degree+1;
-        frac = i/win;
-        gauss = 1 / Math.exp((4*(frac))*(4*(frac)));
-        weightGauss.push(gauss);
-    }
-    weight = _(weightGauss).zip(weight).map(function (x) { return x[0]*x[1]; });
-    smoothed = _.range(0, (list.length+1)-win).map(function (x) { return 0.0; });
-    for (i=0; i < smoothed.length; i++) {
-        smoothed[i] = _(list.slice(i, i+win)).zip(weight).map(function (x) { return x[0]*x[1]; }).reduce(function (memo, num){ return memo + num; }, 0) / _(weight).reduce(function (memo, num){ return memo + num; }, 0);
-    }
-    return smoothed;
-}
-
 
 function changeColor(lightness, rgb, sound) {
     //alert(rgb);

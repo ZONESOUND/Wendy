@@ -1,5 +1,5 @@
-//const socket = io('https://two-ways-transmission.herokuapp.com/')
-const socket = io('http://localhost:8000')
+const socket = io('https://two-ways-transmission.herokuapp.com/')
+//const socket = io('http://localhost:8000')
 // const socket = io('172.20.10.3:8000')
 
 
@@ -11,15 +11,18 @@ socket.on('connect', () => {
         console.log(UUID)
         localStorage.setItem("uuid", UUID);
 
+
     }
 
     socket.emit('connected', {
         uuid: UUID
     })
 
-
     socket.on('clientRecieve', (data) => {
-        console.log(data.status)
+        if(data.compass) {
+            RECEIVE_BUTTON_CLICK = data.shoot
+            return
+        }
         checkLightMode(data);  
         checkShootStatus(data);
     });

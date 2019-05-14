@@ -3,7 +3,8 @@ var START = false;
 var DEVICE_EVENT = 'click'
 var COMPASS_DIR = -1000;
 var UUID = localStorage.getItem("uuid");
-
+var RECEIVE_BUTTON_CLICK = 0;
+var CLICK_NUMBER = 0;
 
 
 let handleOrientation = () => {

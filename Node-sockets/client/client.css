@@ -72,7 +72,7 @@ body {
 }
 
 #button_wrap {
-  height: 50%;
+  height: 80%;
   width: 50%;
   margin: 1% auto;
   padding: 2%;
@@ -116,13 +116,13 @@ body {
 
 .glow {
   /*background-image: linear-gradient(to right top, #5d5f60, #a0aaaf, #f2f2f2)*/
-  background-image: linear-gradient(to right top, #f7204b, #f72843, #f7303a, #f63831, #f43f27);
+  /*background-image: linear-gradient(to right top, #f7204b, #f72843, #f7303a, #f63831, #f43f27);*/
 
   /*transition: 100ms;*/
-  box-shadow: 
+  /*box-shadow: 
     0 0 0px #000, 
     0 0 20px #F43F27,
-    0 0 300px #F27160;
+    0 0 300px #F27160;*/
 }
 
 .glow:active {
