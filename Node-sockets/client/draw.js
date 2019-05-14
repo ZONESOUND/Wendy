@@ -1,8 +1,13 @@
 const MAX_STARS = 400;
 let speed = 20,stars = [];
 let cols, rows,current = [],previous = [],damping = 0.9;
+let r = 10
+var sound, amplitude;
 
+function preload(){
+    //sound = loadSound('./music/FX/FX1_1.wav');
 
+}
 
 function setup() {
     var canvas = createCanvas(windowWidth, windowHeight)
@@ -11,11 +16,13 @@ function setup() {
         stars[i] = new Star();
     }
     // rippleSetup()
+    
     frameRate(60)
-
+    //amplitude = new p5.Amplitude();
 }
 
 function draw() {
+
 
     clear();
     // if(mode == 'stop') {
@@ -30,12 +37,11 @@ function draw() {
     //     rippleSetup()
     // }
     
-    if(!start) {
+    if(!START) {
         drawTitleText()
     }
 
     starField()
-    
 }
 
 function windowResized() {
@@ -49,15 +55,15 @@ function windowResized() {
 
 
 function starField() {
-    if(start) {
+    if(START) {
         translate(windowWidth / 2, windowHeight / 2);
     }
 
-   
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i].update();
         stars[i].show();
     }
+
 }
 
 

@@ -1,14 +1,22 @@
 //const socket = io('https://two-ways-transmission.herokuapp.com/')
 const socket = io('http://localhost:8000')
 // const socket = io('172.20.10.3:8000')
-var uuid;
+
 
 socket.on('connect', () => {
+
     console.log("connect");
-    uuid = generate_uuid()
+    if(UUID == null) {
+        UUID = generate_uuid()
+        console.log(UUID)
+        localStorage.setItem("uuid", UUID);
+
+    }
+
     socket.emit('connected', {
-        uuid: uuid
+        uuid: UUID
     })
+
 
     socket.on('clientRecieve', (data) => {
         console.log(data.status)
@@ -17,6 +25,10 @@ socket.on('connect', () => {
     });
     
 })
+
+socket.on('disconnect', function () {
+    console.log('user disconnected');
+});
 
 
 function send(data) {
@@ -27,7 +39,7 @@ function send(data) {
 
 window.addEventListener('beforeunload', function (e) {
     socket.emit('disconnected',{
-        uuid: uuid
+        uuid: UUID
     })
 });
 

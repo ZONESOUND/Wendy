@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mobile</title>
+    <title>Duplex Transmission</title>
     <link rel="stylesheet" type="text/css" href="client.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.8.9/Tone.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.6.0/NoSleep.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.js"></script>
+
     <script src="./lib/anime.min.js"></script>
+    <script src="./filter.js"></script>
     <script src="./light.js"></script>
     <script src="./initial.js"></script>
     <script src="./shoot.js"></script>
@@ -22,10 +25,8 @@
     
 </head>
 <body style="background-color:black">
-    <div class="bullet"></div>
     <div id="inner" style="width:100%; height:100%; position: absolute; top: 0 ; left: 0">
     </div>
-    <!-- <img src="img/panel1_small.png" / > -->
 
     <div class="spaceship">
         <div id="line"></div>
@@ -34,16 +35,16 @@
         <div class="outer_panel metal2">
             <div id="button_wrap">
                 <div class="outer_button">
-                    <button class="glow" id="button-1"> </button>
+                    <button class="inside-btn glow" id="button-1"> </button>
                 </div>
                 <div class="outer_button">
-                    <button class="glow" id="button-2"> </button>
+                    <button class="inside-btn glow" id="button-2"> </button>
                 </div>
                 <div class="outer_button">
-                    <button class="glow"id="button-3"> </button>
+                    <button class="inside-btn glow"id="button-3"> </button>
                 </div>
                 <div class="outer_button">
-                    <button class="glow"id="button-4"> </button>
+                    <button class="inside-btn glow"id="button-4"> </button>
                 </div>
             </div>
         </div>

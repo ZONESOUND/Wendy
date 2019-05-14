@@ -1,45 +1,72 @@
-var shootCD = 4000;
+var SHOOT_CD = 4000;
+var SMOOTH_COUNT= 0;
+var GLOW_INTERVAL;
+var shoot_sound = [];
+
 
 
 $(document).ready(function() {
 
 	$("button").click(function(e) {
-		shake();
+		//test_sound();
 		//alert($(this).find(".subclass"));
 		//display(0, ".outer_button");
-		$(this).removeClass("glow");
+		//$(this).removeClass("glow");
+		$(this).css('box-shadow', "0 0 0px #000");
+		//$(this).css("background-image", "linear-gradient(to right top, #a0aaaf, #f2f2f2)")
+		$(this).css("background-image", "gray")
 		$(this).prop('disabled',true);
-		var bid = $(this).attr("id")
+		var bid = $(this).attr("id");
+		
 		var number = parseInt(bid.split("-")[1]);
-		send({shoot: number, compass: compassdir});
+		shake(number);
+		send({shoot: number, compass: COMPASS_DIR});
+
+		test(bid, SHOOT_CD);
 		setTimeout(function(id) {
-			$("#"+id).addClass("glow");
+			SMOOTH_COUNT = 0;
+			GLOW_INTERVAL = setInterval(glowShadow, 5, id);
+			console.log("#"+id);
+			$("#"+id).css('background-image', "linear-gradient(to right top, #f7204b, #f43f27)");
+			//$("#"+id).addClass("glow");
         	$("#"+id).prop('disabled',false);
-        }, shootCD, bid);
+        }, SHOOT_CD, bid);
 	});
 
-	
+	//GLOW_INTERVAL = setInterval(glowShadow, 10);
 
+	//$(".inside-btn").css("backgound-image", "linear-gradient(to right top, #5d5f60, #a0aaaf)")
+	//$(".glow").css('background-image', "linear-gradient(to right top, #f7204b, #f43f27)");
+	//background-image: linear-gradient(to right top, #f7204b, #f72843, #f7303a, #f63831, #f43f27);
+
+	
 })
 
-// let handleOrientation = () => {
-// 	if (event.webkitCompassHeading) {
-// 		compassdir = event.webkitCompassHeading;
-// 	} else {
-// 		compassdir = event.alpha;
-// 	}
-// }
+function test_sound() {
+	sound.play();
+	changeColorWithSound();
+}
 
-// if (window.DeviceOrientationEvent) {
-// 	window.addEventListener("deviceorientation", handleOrientation, true);
-// } else {
-// 	console.log("device does not support DeviceOrientation");
-// }
+function glowShadow(id) {
+	if (SMOOTH_COUNT >= 100) {
+		$("#"+id).css('box-shadow', "0 0 0px #000, 0 0 20px #F43F27, 0 0 300px #F27160");
+		clearInterval(GLOW_INTERVAL);
+		
+	}
+	SMOOTH_COUNT += 1;
+	//console.log(SMOOTH_COUNT);
+	$("#"+id).css('box-shadow', "0 0 0px #000, 0 0 "+(SMOOTH_COUNT*20/100).toString()+"px #F43F27");
+
+}
+
 
 function checkShootStatus(data) {
 	if (data.status == "Shoot") {
-		$("button").addClass("glow");
-		
+		$(".inside-btn").addClass("glow");
+		$(".inside-btn").prop('disabled',true);
+	} else {
+		$(".inside-btn").removeClass("glow");
+		$(".inside-btn").prop('disabled',false);
 	}
 }
 
@@ -54,63 +81,58 @@ function display(opacity, obj) {
     });
 }
 
-function shake() {
+function test(id, duration) {
+	anime({
+		targets: "#"+id, 
+		background: "#f7204b",
+		duration: duration,
+		easing: 'easeInQuad',
+	})
+
+}
+
+function shake(id) {
 	
-
-	var tl = anime.timeline({
-	  easing: 'easeOutQuad',
-	  duration: 750
-	});
-
-	// Add children
-	var offset = 250;
-	// .add({
-	//   targets: ".outer_panel",
-	// 	direction: "alternate",
-	// 	translateX: [-15, 0],
-	// 	//opacity: 0,
-	// 	duration: 50,
-	// 	loop: 7
-	// })
-	tl.add({
-        targets: '#inner',  
-        duration: 50,
-        background: "rgba(255,255,255,1)",
-        delay: 0,
-        easing: 'easeInOutExpo',
-        loop:1
-    }, 250-offset)
-    .add({
-        targets: '#inner',  
-        duration: 50,
-        background: "rgba(255,255,255,0)",
-        delay: 0,
-        easing: 'easeInOutExpo',
-        loop:1
-    }, 300-offset)
-    .add({
-	  targets: ".bullet",
-		opacity: 1,
-		scale: 1,
-		translateX: 500,
-		translateY: -500,
-		duration: 50
-		//loop: 5
-	}, 300-offset)
-	.add({
-	  targets: ".bullet",
-		scale: 0.2,
+	anime({
+		targets: ".outer_panel",
+		direction: "alternate",
+		translateX: [-20, 0],
 		//opacity: 0,
-		duration: 2000
-		//loop: 5
-	}, 350-offset)
-	// .add({
-	//   targets: ".bullet",
-	// 	//scale: 0.1,
-	// 	opacity: 0,
-	// 	duration: 200
-	// 	//loop: 5
-	// }, 4050-offset)
+		duration: 50,
+		loop: 7
+	})
+
+	// var tl = anime.timeline({
+	//   //easing: 'easeOutQuad',
+	//   //duration: 750
+	//   	direction: 'alternate',
+ //  		loop: 7
+	// });
+
+
+	// tl
+	anime({
+        targets: '#inner',  
+        duration: 100,
+        background: "rgba(255,255,255,1)",
+        delay: 350,
+        easing: 'easeInOutExpo',
+        loop: false
+    })
+
+    anime({
+        targets: '#inner',  
+        duration: 500,
+        background: "rgba(255,255,255,0)",
+        delay: 450,
+        easing: 'easeInOutExpo',
+        loop:1
+    })
+    //shoot_sound[(id-1)+4].start();
+    // setTimeout(function() {
+		
+    // }, 150)
+
 }
 
 /*
