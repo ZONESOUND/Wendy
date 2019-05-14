@@ -1,6 +1,7 @@
 const MAX_STARS = 400;
 let speed = 20,stars = [];
 let meteors = []
+let r = 2
 let color_array = [
     [255,255,255],
     [0  , 255, 255],
@@ -52,6 +53,8 @@ function draw() {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
+    bodyScrollLock.disableBodyScroll(window);
+    stars = []
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i] = new Star();
     }
@@ -84,7 +87,7 @@ function meteorField() {
 
 
 function createMeteor(index) {
-    for (var i = 0; i < Math.floor(9 * Math.random()); i++) {
+    for (var i = 0; i < Math.floor(3 * Math.random() + 1); i++) {
         var offset_x = Math.random() * (windowWidth  / 2)  - (windowWidth  / 4)
         var offset_y = Math.random() * (windowHeight / 2)  - (windowHeight / 4)
         meteors.push(new Meteor(offset_x, offset_y, color_array[index-1]))
@@ -155,6 +158,23 @@ class Star {
 
         stroke(255)
         line(px, py, sx, sy)
+    }
+}
+
+
+function createNoise(r) {
+   noStroke()
+   fill(0, 20)
+   rect(15, 20, width, height);
+   for (h = 0; h < windowHeight; h += 5){
+       for (i = 0; i < windowWidth; i += 5) {
+           let c = random(0, 255);
+           // let g = random(0, 255);
+           // let b = random(0, 255);
+           // Pixel size
+           rect(i, h, r, r);
+           fill(c);
+       }
     }
 }
 

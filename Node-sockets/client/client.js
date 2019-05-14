@@ -18,6 +18,7 @@ socket.on('connect', () => {
 
     socket.on('clientRecieve', (data) => {
         if(data.compass) {
+            console.log(data.shoot)
             recieve_button_click = data.shoot
             return
         }

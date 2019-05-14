@@ -12,7 +12,9 @@ let handleOrientation = () => {
         compassdir = event.alpha;
     }
 }
-
+var color = tinycolor("hsl(0, 100%, 50%)")
+console.log(color)
+console.log(color.toRgbString())
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     device_event = 'touchstart'
@@ -21,15 +23,15 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
         setTimeout(() => {
             if(compassdir == -1000) {
                 Swal.fire({
-                    // title: 'Notice!',
-                    text: 'Please turn on your orientation setting.',
+                    text: '設定 > Safari > 動作與定向取用',
                     imageUrl: './img/notice.gif',
-                    imageWidth: 230,
-                    imageHeight: 380,
+                    imageWidth: window.outerWidth / 2,
+                    imageHeight: window.outerWidth / 2 * 1.65,
+                    width: window.outerWidth / 1.3,
                     imageAlt: 'Notice',
                     padding: '1em',
                     animation: true,
-                    heightAuto: true
+                    heightAuto: false,
                 })
             }
         }, 300);
@@ -40,7 +42,6 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
 $(document).ready(function () {
     document.addEventListener(device_event, initial)
-    document.addEventListener('scroll', noScroll)
 });
 
 
@@ -50,9 +51,43 @@ function initial() {
         Tone.context.resume();
     }
     noSleep.enable();
+    openFullscreen()
     start = true
+    bodyScrollLock.disableBodyScroll(window);
+    disableZoom()
+
 }
 
-function noScroll() {
-    window.scrollTo(0, 0)
+
+function disableZoom() {
+  document.addEventListener('touchstart', (event) => {
+    if (event.touches.length > 1) {
+       event.preventDefault();
+    }
+  }, { passive: false });
+  
+  let lastTouchEnd = 0;
+  document.addEventListener('touchend', (event) => {
+    const now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault();
+    }
+    lastTouchEnd = now;
+  }, false);
+
+}
+
+function openFullscreen() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) {
+        /* Firefox */
+        document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) {
+        /* Chrome, Safari and Opera */
+        document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) {
+        /* IE/Edge */
+        document.documentElement.msRequestFullscreen();
+    }
 }
