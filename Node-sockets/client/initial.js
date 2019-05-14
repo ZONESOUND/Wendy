@@ -14,9 +14,6 @@ let handleOrientation = () => {
         COMPASS_DIR = event.alpha;
     }
 }
-var color = tinycolor("hsl(0, 100%, 50%)")
-console.log(color)
-console.log(color.toRgbString())
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     DEVICE_EVENT = 'touchstart'
@@ -43,7 +40,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 }
 
 $(document).ready(function () {
-    document.addEventListener(device_event, initial)
+    document.addEventListener(DEVICE_EVENT, initial)
 
 });
 

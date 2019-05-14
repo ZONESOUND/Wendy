@@ -5,7 +5,7 @@ let r = 10
 var sound, amplitude;
 
 let meteors = []
-let r = 2
+let particle_r = 2
 let color_array = [
     [255,255,255],
     [0  , 255, 255],
@@ -166,7 +166,7 @@ class Star {
 }
 
 
-function createNoise(r) {
+function createNoise(particle_r) {
    noStroke()
    fill(0, 20)
    rect(15, 20, width, height);
@@ -176,7 +176,7 @@ function createNoise(r) {
            // let g = random(0, 255);
            // let b = random(0, 255);
            // Pixel size
-           rect(i, h, r, r);
+           rect(i, h, particle_r, particle_r);
            fill(c);
        }
     }
