@@ -74,7 +74,7 @@ function checkLightMode(data) {
     if (mode == "blink") {
         if (data.uuid.includes(UUID)) {
             delay = Math.random()*data.random;
-            if (data.self != undefined) {
+            if (data.self != undefined && data.self == 1) {
                 genColorFromSound(order, color);
             } else {
                 duration = data.duration;
