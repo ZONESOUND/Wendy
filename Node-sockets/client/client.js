@@ -1,25 +1,26 @@
 const socket = io('https://two-ways-transmission.herokuapp.com/')
-// const socket = io('http://localhost:8000')
+//const socket = io('http://localhost:8000')
 // const socket = io('172.20.10.3:8000')
 
 
 socket.on('connect', () => {
 
-    if(uuid == null) {
-        uuid = generate_uuid()
-        console.log(uuid)
-        localStorage.setItem("uuid", uuid);
+    console.log("connect");
+    if(UUID == null) {
+        UUID = generate_uuid()
+        console.log(UUID)
+        localStorage.setItem("uuid", UUID);
+
 
     }
 
     socket.emit('connected', {
-        uuid: uuid
+        uuid: UUID
     })
 
     socket.on('clientRecieve', (data) => {
         if(data.compass) {
-            console.log(data.shoot)
-            recieve_button_click = data.shoot
+            RECEIVE_BUTTON_CLICK = data.shoot
             return
         }
         checkLightMode(data);  
@@ -41,7 +42,7 @@ function send(data) {
 
 window.addEventListener('beforeunload', function (e) {
     socket.emit('disconnected',{
-        uuid: uuid
+        uuid: UUID
     })
 });
 

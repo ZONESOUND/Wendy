@@ -1,15 +1,17 @@
-var noSleep = new NoSleep();
-var start = false
-var device_event = 'click'
-var compassdir = -1000;
-var recieve_button_click = 0;
+var NO_SLEEP = new NoSleep();
+var START = false;
+var DEVICE_EVENT = 'click'
+var COMPASS_DIR = -1000;
+var UUID = localStorage.getItem("uuid");
+var RECEIVE_BUTTON_CLICK = 0;
+var CLICK_NUMBER = 0;
 
-var uuid = localStorage.getItem("uuid")
+
 let handleOrientation = () => {
     if (event.webkitCompassHeading) {
-        compassdir = event.webkitCompassHeading;
+        COMPASS_DIR = event.webkitCompassHeading;
     } else {
-        compassdir = event.alpha;
+        COMPASS_DIR = event.alpha;
     }
 }
 var color = tinycolor("hsl(0, 100%, 50%)")
@@ -17,11 +19,11 @@ console.log(color)
 console.log(color.toRgbString())
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    device_event = 'touchstart'
+    DEVICE_EVENT = 'touchstart'
     if (window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", handleOrientation, false);
         setTimeout(() => {
-            if(compassdir == -1000) {
+            if(COMPASS_DIR == -1000) {
                 Swal.fire({
                     text: '設定 > Safari > 動作與定向取用',
                     imageUrl: './img/notice.gif',
@@ -42,20 +44,19 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
 $(document).ready(function () {
     document.addEventListener(device_event, initial)
+
 });
-
-
 
 function initial() {
     if (Tone.context.state !== 'running') {
         Tone.context.resume();
     }
-    noSleep.enable();
+
+    NO_SLEEP.enable();
     openFullscreen()
-    start = true
     bodyScrollLock.disableBodyScroll(window);
     disableZoom()
-
+    START = true;
 }
 
 

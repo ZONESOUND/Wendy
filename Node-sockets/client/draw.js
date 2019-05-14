@@ -1,5 +1,9 @@
 const MAX_STARS = 400;
 let speed = 20,stars = [];
+let cols, rows,current = [],previous = [],damping = 0.9;
+let r = 10
+var sound, amplitude;
+
 let meteors = []
 let r = 2
 let color_array = [
@@ -10,21 +14,22 @@ let color_array = [
 ]
 
 
-
 function setup() {
     var canvas = createCanvas(windowWidth, windowHeight)
     canvas.parent('inner');
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i] = new Star();
     }
+
     frameRate(60)
 }
+
 
 
 function draw() {
     clear();
 
-    if(!start) {
+    if(!START) {
         drawTitleText()
     }else {
         if (meteors.length) {
@@ -32,17 +37,15 @@ function draw() {
         }
     }
 
-    if (click_number) {
-        createMeteor(click_number)
-        click_number = 0
+    if (CLICK_NUMBER) {
+        createMeteor(CLICK_NUMBER)
+        CLICK_NUMBER = 0
     }
 
-    if (recieve_button_click) {
-        createMeteor(recieve_button_click)
-        recieve_button_click = 0
+    if (RECEIVE_BUTTON_CLICK) {
+        createMeteor(RECEIVE_BUTTON_CLICK)
+        RECEIVE_BUTTON_CLICK = 0
     }
-
-
 
     starField()
     
@@ -62,7 +65,7 @@ function windowResized() {
 
 
 function starField() {
-    if(start) {
+    if(START) {
         translate(windowWidth / 2, windowHeight / 2);
     }
 
@@ -70,6 +73,7 @@ function starField() {
         stars[i].update();
         stars[i].show();
     }
+
 
 }
 
@@ -90,7 +94,7 @@ function createMeteor(index) {
     for (var i = 0; i < Math.floor(3 * Math.random() + 1); i++) {
         var offset_x = Math.random() * (windowWidth  / 2)  - (windowWidth  / 4)
         var offset_y = Math.random() * (windowHeight / 2)  - (windowHeight / 4)
-        meteors.push(new Meteor(offset_x, offset_y, color_array[index-1]))
+        meteors.push(new Meteor(offset_x, offset_y, BTN_COLOR[index]))
     }
 }
 
@@ -201,7 +205,12 @@ class Meteor {
             var d = 1 + (i * 2);
             var alpha = 255 - (i * this.r);
             noStroke();
+            //var c = color(`hsla(${this.color_}, ${alpha})`);
+            //console.log(`hsla(${this.color_}, ${alpha})`);
             fill(this.color_[0], this.color_[1], this.color_[2], alpha);
+            //fill(100, 255, 0, alpha);
+            //c = color(`rgba(0, 0, 255, ${alpha})`);
+            //fill(c);
             ellipse(this.x, this.y, d, d);
         }
         for (var i = 0; i < 65; i++) {

@@ -8,7 +8,7 @@
 
 const Max = require("max-api");
 var socket = require('socket.io-client')('https://two-ways-transmission.herokuapp.com/');
-// var socket = require('socket.io-client')('http://localhost:8000');
+//var socket = require('socket.io-client')('http://localhost:8000');
 var prevTime = new Date();
 var prevTime_recieve = new Date();
 var status_arr = ["Light", "Gyro", "Shoot"]
@@ -43,6 +43,7 @@ socket.on('connect', (data) => {
 	Max.addHandler("status", (...args) => {
 		Max.post("status:" + status_arr[args[0]]);
 		status = status_arr[args[0]];
+		sender({status: status});
 		
 	});
 
