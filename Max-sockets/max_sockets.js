@@ -120,6 +120,7 @@ function fillData(data) {
 		percentage: 1,
 		keepBlink: 0,
 		order: 0,
+		order_to: 0,
 		random: 0
 	};
 	for (var key in data) {

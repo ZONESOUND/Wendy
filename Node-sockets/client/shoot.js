@@ -2,6 +2,8 @@ var SHOOT_CD = 4000;
 var SMOOTH_COUNT= 0;
 var GLOW_INTERVAL;
 var BTN_COLOR = [];
+var BTN_COLOR2 = [];
+
 var BTN_ID_LIST = [];
 var BTN_ID_IND = 0;
 
@@ -48,6 +50,7 @@ function initBtnPara() {
 
 function initBtnColor(oriH) {
 	BTN_COLOR = [];
+	BTN_COLOR_2 = [];
 	var sList = [60, 90];
 	var lList = [40, 90];
 	for (var i=-1; i<=1; i+=2) {
@@ -59,6 +62,7 @@ function initBtnColor(oriH) {
 				var l = lList[0]+k*(lList[1]-lList[0])/3;
 				var rgbList = hsl2rgb(h, s, l);
 				BTN_COLOR.push(rgbList);
+				BTN_COLOR_2.push(hsl2rgb(h, s, l+3));
 			}
 		}
 	}
@@ -166,7 +170,9 @@ function enableBtn(target) {
 		}
 		//$(target).css('background-image', "linear-gradient(to right top, #f7204b, #f43f27)");
 		console.log(BTN_COLOR[idN]);
-		$(this).css('background', toRGBString(BTN_COLOR[idN]));
+		//$(this).css('background', toRGBString(BTN_COLOR[idN]));
+		$(this).css('background', `radial-gradient(${toRGBString(BTN_COLOR_2[idN])} 5%, ${toRGBString(BTN_COLOR[idN])} 100%)`);
+
 		$(this).css('box-shadow', "0 0 0px #000, 0 0 20px "+toRGBString(BTN_COLOR[idN]));
 
 		$(this).prop('disabled', false);

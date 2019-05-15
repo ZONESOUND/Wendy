@@ -60,11 +60,14 @@ function checkLightMode(data) {
     mode = data.mode
     console.log(mode)
     order = data.order;
-    console.log(order);
-    if (order >= rgbcolors.length) {
-        order = Math.floor(Math.random()*rgbcolors.length);
-
+    // if (order >= rgbcolors.length) {
+    //     order = Math.floor(Math.random()*rgbcolors.length);
+    // }
+    if (data.order_to != undefined && data.order_to > data.order) {
+        order = data.order + Math.floor(Math.random()*(data.order_to-data.order+1));
     }
+    console.log(order);
+
     if (data.color == undefined) {
         color = rgbcolors[order];
     } else {
