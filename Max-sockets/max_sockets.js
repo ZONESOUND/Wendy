@@ -48,17 +48,12 @@ socket.on('connect', (data) => {
 	});
 
 	Max.addHandler("shoot", (...args) => {
-		status = "Shoot"
-		data = {
-			status: status,
-			// people: args[0],
-			// type: args[1]
-		}
-		sender(data);
+		sender(fillShootData(args[0]))
+		
 	})
 
 
-    Max.addHandler("light", (...args) => {
+  Max.addHandler("light", (...args) => {
 		Max.post("light args[0]:" + args[0]/100);
 		random = 0;
 		keepBlink = 1;
@@ -73,17 +68,16 @@ socket.on('connect', (data) => {
 	Max.addHandler("blink", (...args) => {
 		if (new Date() - prevTime < 300) return;
     	prevTime = new Date();
-		Max.post("blink args[0]:" + args[0]/100.);
-		//args[0] percentage
-		random = 0;
-		keepBlink = 1;
-		colorInd = 0;
-		colorStr = "";
-		if (args.length > 1) colorInd = args[1]
-		if (args.length > 2) keepBlink = args[2];
-		if (args.length > 3) random = args[3];
-		if (args.length > 6) colorStr = args[4]+","+args[5]+","+args[6]
-		sender(fillLightData("blink", args[0]/100., colorInd, random, keepBlink, colorStr));
+			Max.post("blink args[0]:" + args[0]/100.);
+			random = 0;
+			keepBlink = 1;
+			colorInd = 0;
+			colorStr = "";
+			if (args.length > 1) colorInd = args[1]
+			if (args.length > 2) keepBlink = args[2];
+			if (args.length > 3) random = args[3];
+			if (args.length > 6) colorStr = args[4]+","+args[5]+","+args[6]
+			sender(fillLightData("blink", args[0]/100., colorInd, random, keepBlink, colorStr));
 
 	});
 
@@ -108,9 +102,16 @@ socket.on('connect', (data) => {
 			if (data["times"] == 0) delete data["times"];
 		}
 		sender(fillData(data));
-		//sender()
 	});
 })
+
+
+function fillShootData(index) {
+	return {
+		shoot: index, 
+		compass: 10
+	}
+}
 
 
 function fillData(data) {

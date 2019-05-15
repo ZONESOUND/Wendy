@@ -3,6 +3,7 @@ html.iphone body { height: 100.1%; }
 
 body {
   overflow: hidden;
+  touch-action: manipulation;
 }
 :root {
     --my-variable-name: #999999;
@@ -113,6 +114,7 @@ body {
     display: block;
     padding-top: 100%;
 }
+
 
 .glow {
   /*background-image: linear-gradient(to right top, #5d5f60, #a0aaaf, #f2f2f2)*/

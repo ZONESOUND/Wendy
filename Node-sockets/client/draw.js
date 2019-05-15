@@ -5,6 +5,7 @@ let r = 10
 var sound, amplitude;
 
 let meteors = []
+let particle_r = 2
 let color_array = [
     [255,255,255],
     [0  , 255, 255],
@@ -12,11 +13,6 @@ let color_array = [
     [255, 255,   0],
 ]
 
-
-function preload(){
-    //sound = loadSound('./music/FX/FX1_1.wav');
-
-}
 
 function setup() {
     var canvas = createCanvas(windowWidth, windowHeight)
@@ -51,9 +47,6 @@ function draw() {
         RECEIVE_BUTTON_CLICK = 0
     }
 
-    
-
-
     starField()
     
 }
@@ -63,6 +56,8 @@ function draw() {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
+    bodyScrollLock.disableBodyScroll(window);
+    stars = []
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i] = new Star();
     }
@@ -96,7 +91,7 @@ function meteorField() {
 
 
 function createMeteor(index) {
-    for (var i = 0; i < Math.floor(9 * Math.random()); i++) {
+    for (var i = 0; i < Math.floor(3 * Math.random() + 1); i++) {
         var offset_x = Math.random() * (windowWidth  / 2)  - (windowWidth  / 4)
         var offset_y = Math.random() * (windowHeight / 2)  - (windowHeight / 4)
         meteors.push(new Meteor(offset_x, offset_y, BTN_COLOR[index]))
@@ -167,6 +162,23 @@ class Star {
 
         stroke(255)
         line(px, py, sx, sy)
+    }
+}
+
+
+function createNoise(particle_r) {
+   noStroke()
+   fill(0, 20)
+   rect(15, 20, width, height);
+   for (h = 0; h < windowHeight; h += 5){
+       for (i = 0; i < windowWidth; i += 5) {
+           let c = random(0, 255);
+           // let g = random(0, 255);
+           // let b = random(0, 255);
+           // Pixel size
+           rect(i, h, particle_r, particle_r);
+           fill(c);
+       }
     }
 }
 
