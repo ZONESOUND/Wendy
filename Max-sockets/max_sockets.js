@@ -7,8 +7,8 @@
 
 
 const Max = require("max-api");
-var socket = require('socket.io-client')('https://two-ways-transmission.herokuapp.com/');
-//var socket = require('socket.io-client')('http://localhost:8000');
+//var socket = require('socket.io-client')('https://two-ways-transmission.herokuapp.com/');
+var socket = require('socket.io-client')('http://localhost:8000');
 var prevTime = new Date();
 var prevTime_recieve = new Date();
 var status_arr = ["Light", "Shoot"]
@@ -70,7 +70,7 @@ socket.on('connect', (data) => {
     	prevTime = new Date();
 			Max.post("blink args[0]:" + args[0]/100.);
 			random = 0;
-			keepBlink = 1;
+			keepBlink = 0;
 			colorInd = 0;
 			colorStr = "";
 			if (args.length > 1) colorInd = args[1]
@@ -101,13 +101,25 @@ socket.on('connect', (data) => {
 		if ("times" in data) {
 			if (data["times"] == 0) delete data["times"];
 		}
+
+		if (data["order_to"] == undefined) {
+			Max.post("order_to");
+			data["order_to"] = data["order"];
+		} else {
+			Max.post("order_to:" +data["order_to"]);
+		}
 		sender(fillData(data));
+	});
+
+	Max.addHandler("shoot_color", (...args) => {
+		sender({status: status, btn_color: args[0]});
 	});
 })
 
 
 function fillShootData(index) {
 	return {
+		status: status,
 		shoot: index, 
 		compass: 10
 	}
@@ -136,12 +148,13 @@ function fillData(data) {
 
 
 function fillLightData(mode, percentage, colorInd=0, random=0, keepBlink=0, color="") {
+	
 	data = {
 		status: status,
 		mode: mode,
 		percentage: percentage,
 		keepBlink: keepBlink,
-		order: colorInd,
+		order: colorInd-1,
 		random: random
 	};
 	if (color != "") data.color = color;
