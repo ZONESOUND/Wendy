@@ -42,6 +42,8 @@ io.on('connection', (socket, req) => {
                     interval = setInterval(function(){
                         if (data.duration == undefined)
                             data.duration = duration;
+                        if (data.status != undefined)
+                            delete data["status"];
                         data.uuid = choose_client(data.percentage);
                         io.emit('clientRecieve', data);
                     }, data.keepBlink);

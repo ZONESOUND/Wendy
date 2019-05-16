@@ -1,4 +1,4 @@
-var SHOOT_CD = 30*1000;
+var SHOOT_CD = 4*1000;
 var SMOOTH_COUNT= 0;
 var GLOW_INTERVAL;
 var BTN_COLOR = [];
@@ -6,6 +6,7 @@ var BTN_COLOR2 = [];
 
 var BTN_ID_LIST = [];
 var BTN_ID_IND = 0;
+var ENABLE_SHOOT = false;
 
 $(document).ready(function() {
 
@@ -35,7 +36,6 @@ $(document).ready(function() {
 	//$(".inside-btn").css("backgound-image", "linear-gradient(to right top, #5d5f60, #a0aaaf)")
 	//$(".glow").css('background-image', "linear-gradient(to right top, #f7204b, #f43f27)");
 	//background-image: linear-gradient(to right top, #f7204b, #f72843, #f7303a, #f63831, #f43f27);
-
 	
 })
 
@@ -147,9 +147,19 @@ function glowShadow(target) {
 
 
 function checkShootStatus(data) {
+	console.log("status:"+data);
+	console.log(data);
 	if (data.status == "Shoot") {
-		enableBtn(".inside-btn");
-	} else {
+		if (!ENABLE_SHOOT) enableBtn(".inside-btn");
+		ENABLE_SHOOT = true;
+		if (data.btn_color != undefined) {
+			console.log("~~~~");
+			initBtnColor(data.btn_color);
+			enableBtn(".inside-btn");
+		}
+	} else if (data.status != undefined){
+
+		ENABLE_SHOOT = false;
 		disableBtn(".inside-btn");
 	}
 }

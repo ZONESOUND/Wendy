@@ -50,7 +50,7 @@ function initial() {
     }
 
     NO_SLEEP.enable();
-    openFullscreen()
+    //openFullscreen()
     bodyScrollLock.disableBodyScroll(window);
     disableZoom()
     START = true;
