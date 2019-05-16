@@ -11,7 +11,7 @@ var socket = require('socket.io-client')('https://two-ways-transmission.herokuap
 //var socket = require('socket.io-client')('http://localhost:8000');
 var prevTime = new Date();
 var prevTime_recieve = new Date();
-var status_arr = ["Light", "Gyro", "Shoot"]
+var status_arr = ["Light", "Shoot"]
 var status = "Light";
 
 
@@ -127,6 +127,10 @@ function fillData(data) {
 	for (var key in data) {
       default_data[key] = data[key];
     }
+    default_data["order"] -= 1;
+    default_data["order_to"] -= 1;
+    if (default_data["order"] == -1) default_data["order"] = 100;
+    if (default_data["order_to"] == -1) default_data["order_to"] = 100;
     return default_data;
 }
 

@@ -63,7 +63,10 @@ function checkLightMode(data) {
     // if (order >= rgbcolors.length) {
     //     order = Math.floor(Math.random()*rgbcolors.length);
     // }
-    if (data.order_to != undefined && data.order_to > data.order) {
+    if (data.order < 0 || data.order_to < 0 || data.order >= rgbcolors.length || data.order_to  >= rgbcolors.length) {
+        order = Math.floor(Math.random()*rgbcolors.length);
+    }
+    else if (data.order_to != undefined && data.order_to > data.order) {
         order = data.order + Math.floor(Math.random()*(data.order_to-data.order+1));
     }
     console.log(order);
