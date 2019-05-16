@@ -11,27 +11,28 @@ var colors = ["0, 100%, 100%",
 "0, 100%, 68%",
 "196, 100%, 68%"]
 
-var rgbcolors = ["255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255",
-"255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255",
-"255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255",
-"255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255",
-"255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255"
-]
+var rgbcolors = [];
+// ["255, 255, 255", 
+// "255, 250, 92",
+// "255, 92, 92",
+// "92, 211, 255",
+// "255, 255, 255", 
+// "255, 250, 92",
+// "255, 92, 92",
+// "92, 211, 255",
+// "255, 255, 255", 
+// "255, 250, 92",
+// "255, 92, 92",
+// "92, 211, 255",
+// "255, 255, 255", 
+// "255, 250, 92",
+// "255, 92, 92",
+// "92, 211, 255",
+// "255, 255, 255", 
+// "255, 250, 92",
+// "255, 92, 92",
+// "92, 211, 255"
+// ]
 
 var blink_sound = []
 var fx_sound = [];
@@ -51,6 +52,16 @@ for (var i=0; i<4; i++) {
     for (var j=0; j<5; j++) {
         blink_sound[i*5+j] = new Tone.Player(`./music/iPad_FX_Samples/sample_${i+1}-${j+1}.wav`).connect(meter).connect(waveform).connect(fft).toMaster();
     }
+}
+initColor();
+
+function initColor() {
+    rgbcolors = [[255, 255, 255]];
+    rgbcolors = rgbcolors.concat(genColor(0, 4, 1, 1, 50, [100, 100], [73, 73], [0, 0, 0]));
+    rgbcolors = rgbcolors.concat(genColor(0, 1, 1, 5, 0, [0], [30, 85], [0, 0, 0]));
+    rgbcolors = rgbcolors.concat(genColor(0, 5, 1, 1, 50, [100, 100], [73, 73], [0, 0, 0]));
+    rgbcolors = rgbcolors.concat(genColor(0, 5, 1, 1, 50, [100, 100], [73, 73], [0, 0, 0]));
+    //genColor(oriH, hSplit, sSplit, lSplit, hNum, sList, lList, offset)
 }
 
 
@@ -72,7 +83,8 @@ function checkLightMode(data) {
     console.log(order);
 
     if (data.color == undefined) {
-        color = rgbcolors[order];
+        color = toColorString(rgbcolors[order]);
+        console.log("~"+color);
     } else {
         color = data.color;
     }
