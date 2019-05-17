@@ -5,6 +5,7 @@ var COMPASS_DIR = -1000;
 var UUID = localStorage.getItem("uuid");
 var RECEIVE_BUTTON_CLICK = 0;
 var CLICK_NUMBER = 0;
+var ONLYSCREEN = false;
 
 
 let handleOrientation = () => {
@@ -40,6 +41,11 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 }
 
 $(document).ready(function () {
+    let urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('screen')) {
+        ONLYSCREEN = urlParams.get('screen')
+    }
+    
     document.addEventListener(DEVICE_EVENT, initial)
 
 });
@@ -50,12 +56,12 @@ function initial() {
     }
 
     NO_SLEEP.enable();
-    //openFullscreen()
     bodyScrollLock.disableBodyScroll(window);
     disableZoom()
-    setTimeout(function () {
+    setTimeout(function() {
         START = true;
     }, 200)
+    
 }
 
 

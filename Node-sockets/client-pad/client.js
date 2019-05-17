@@ -10,6 +10,8 @@ socket.on('connect', () => {
         UUID = generate_uuid()
         console.log(UUID)
         localStorage.setItem("uuid", UUID);
+
+
     }
 
     socket.emit('connected', {
