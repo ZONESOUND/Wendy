@@ -49,15 +49,15 @@ $(document).ready(function () {
         console.log(reload)
     }, 1000 * 40);
 
-    setTimeout(function() {
-        if (performance.navigation.type == 1) {
-            try {
-                Tone.context.resume();
-            }catch {
-                console.log('err')
-            }
-        }
-    }, 1000)
+    // setTimeout(function() {
+    //     if (performance.navigation.type == 1) {
+    //         try {
+    //             Tone.context.resume();
+    //         }catch {
+    //             console.log('err')
+    //         }
+    //     }
+    // }, 1000)
 
 });
 
