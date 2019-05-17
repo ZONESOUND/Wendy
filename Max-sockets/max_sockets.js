@@ -114,6 +114,13 @@ socket.on('connect', (data) => {
 	Max.addHandler("shoot_color", (...args) => {
 		sender({status: status, btn_color: args[0]});
 	});
+
+	Max.addHandler("shoot_dict", (...args) => {
+		var data = args[0];
+		data.status = status;
+		sender(data);
+	});
+
 })
 
 

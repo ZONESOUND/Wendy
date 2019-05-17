@@ -110,6 +110,9 @@ function checkShootStatus(data) {
 			initBtnColor(data.btn_color);
 			enableBtn(".inside-btn");
 		}
+		if (data.cd != undefined) {
+			SHOOT_CD = data.cd;
+		}
 	} else if (data.status != undefined){
 
 		ENABLE_SHOOT = false;
@@ -173,7 +176,7 @@ function shake(id) {
 	anime({
 		targets: ".outer_panel",
 		direction: "alternate",
-		translateX: [-20, 0],
+		translateX: [-10, 0],
 		//opacity: 0,
 		duration: 50,
 		loop: 7
