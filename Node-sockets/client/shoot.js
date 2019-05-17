@@ -3,7 +3,7 @@ var SMOOTH_COUNT= 0;
 var GLOW_INTERVAL;
 var BTN_COLOR = [];
 var BTN_COLOR2 = [];
-
+let idN = 0;
 var BTN_ID_LIST = [];
 var BTN_ID_IND = 0;
 var ENABLE_SHOOT = false;
@@ -97,7 +97,13 @@ function glowShadow(target) {
 
 }
 
-
+function checkNoiseStatus(data) {
+	if(data.status == 'Noise') {
+		NOISE_TRIGGER = true
+	} else {
+		NOISE_TRIGGER = false
+	}
+}
 
 function checkShootStatus(data) {
 	console.log("status:"+data);
@@ -123,11 +129,10 @@ function checkShootStatus(data) {
 
 
 function enableBtn(target) {
-	$('.inside-btn').addClass("blink-btn")
-	$(target).each(function() {
-		var idN = BTN_ID_LIST[BTN_ID_IND];
-		console.log("button-"+idN.toString());
-		$(this).attr("id", "button-"+idN.toString());
+	// $('.inside-btn').addClass("blink-btn")
+	$(target).each(function () {
+		idN = BTN_ID_LIST[BTN_ID_IND];
+		$(this).attr("id", "button-" + idN.toString());
 		BTN_ID_IND++;
 		if (BTN_ID_IND >= BTN_ID_LIST.length) {
 			BTN_ID_IND = 0;
@@ -136,16 +141,18 @@ function enableBtn(target) {
 		$(this).css('background', `radial-gradient(${toRGBSAtring(BTN_COLOR_2[idN],1)} 0%, ${toRGBSAtring(BTN_COLOR_2[idN],0.7)} 20%,${toRGBSAtring(BTN_COLOR_2[idN],0.3)} 60%, ${toRGBSAtring(BTN_COLOR_2[idN],0.3)} 85%, ${toRGBSAtring(BTN_COLOR_2[idN],0.8)} 100%)`);
 		$(this).css('box-shadow', "0 0 0px #000, 0 0 150px " + toRGBSAtring(BTN_COLOR_2[idN], 0.5));
 		$(this).prop('disabled', false);
+		idN = BTN_ID_LIST[BTN_ID_IND];
 	})
 	SMOOTH_COUNT = 0;
-	//GLOW_INTERVAL = setInterval(glowShadow, 5, target);
-	
+
 }
 
 function disableBtn(target) {
-	$('.inside-btn').removeClass("blink-btn");
+	// $('.inside-btn').removeClass("blink-btn");
+	// $(target).removeClass("blink-btn");
+	$(target).css('background', `radial-gradient(${toRGBSAtring(BTN_COLOR_2[idN],0)} 60%, ${toRGBSAtring(BTN_COLOR_2[idN],0.8)} 100%)`);
 	$(target).css('box-shadow', "0 0 0px #000");
-	$(target).css("background", "transparent");
+	// $(target).css("background", "transparent");
 	$(target).prop('disabled', true);
 }
 

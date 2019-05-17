@@ -3,9 +3,6 @@ let speed = 20,stars = [];
 let cols, rows,current = [],previous = [],damping = 0.9;
 let r = 10
 var sound, amplitude;
-let NOISE_TRIGGER = false
-
-
 let meteors = []
 let particle_r = 2
 let color_array = [

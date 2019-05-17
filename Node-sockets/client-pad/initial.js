@@ -6,6 +6,7 @@ var UUID = localStorage.getItem("uuid");
 var RECEIVE_BUTTON_CLICK = 0;
 var CLICK_NUMBER = 0;
 var ONLYSCREEN = false;
+let NOISE_TRIGGER = false
 
 
 let handleOrientation = () => {

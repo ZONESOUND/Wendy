@@ -11,7 +11,7 @@ var socket = require('socket.io-client')('https://two-ways-transmission.herokuap
 //var socket = require('socket.io-client')('http://localhost:8000');
 var prevTime = new Date();
 var prevTime_recieve = new Date();
-var status_arr = ["Light", "Shoot"]
+var status_arr = ["Light", "Shoot","Noise"]
 var status = "Light";
 
 
