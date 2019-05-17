@@ -56,12 +56,9 @@ function initial() {
         Tone.context.resume();
     }
 
-    NO_SLEEP.enable();
     bodyScrollLock.disableBodyScroll(window);
     disableZoom()
-    setTimeout(function() {
-        START = true;
-    }, 200)
+    START = true;
     
 }
 
