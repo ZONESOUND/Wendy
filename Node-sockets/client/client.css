@@ -101,7 +101,7 @@ body {
   height: 50%;
   width: 50%;
   transform: translate(50%, 25%);
-  border: solid 1px red;
+  /* border: solid 1px red; */
 }
 
 #button_wrap {
