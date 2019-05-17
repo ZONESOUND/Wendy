@@ -56,11 +56,19 @@ for (var i=0; i<4; i++) {
 initColor();
 
 function initColor() {
-    rgbcolors = [[255, 255, 255]];
-    rgbcolors = rgbcolors.concat(genColor(0, 4, 1, 1, 50, [100, 100], [73, 73], [0, 0, 0]));
-    rgbcolors = rgbcolors.concat(genColor(0, 1, 1, 5, 0, [0], [30, 85], [0, 0, 0]));
-    rgbcolors = rgbcolors.concat(genColor(0, 5, 1, 1, 50, [100, 100], [73, 73], [0, 0, 0]));
-    rgbcolors = rgbcolors.concat(genColor(0, 5, 1, 1, 50, [100, 100], [73, 73], [0, 0, 0]));
+    var white = [255, 255, 255];
+    //SAMPLE 1
+    rgbcolors = [white];
+    rgbcolors = rgbcolors.concat(genColor(99, 4, 1, 1, 33, [100, 100], [73, 73], [0, 0, 0]));
+    //SAMPLE 2 (GRAY)
+    rgbcolors = rgbcolors.concat(genColor(0, 1, 1, 5, 0, [0], [30, 100], [0, 0, 0]));
+    //SAMPLE 3
+    rgbcolors.push(white);
+    
+    rgbcolors = rgbcolors.concat(genColor(10, 4, 1, 1, 15, [56, 56], [66, 66], [0, 0, 0]));
+    //SAMPLE 4
+    rgbcolors.push(white);
+    rgbcolors = rgbcolors.concat(genColor(0, 4, 1, 1, 35, [81, 81], [73, 73], [0, 0, 0]));
     //genColor(oriH, hSplit, sSplit, lSplit, hNum, sList, lList, offset)
 }
 
