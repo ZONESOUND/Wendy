@@ -96,7 +96,7 @@ function checkLightMode(data) {
     } else {
         color = data.color;
     }
-
+    
     var sound = blink_sound[order];
     if (data.sound == 0) sound = null;
 
@@ -130,7 +130,7 @@ function checkLightMode(data) {
         if (data.duration == undefined)
             duration = 800;
         else duration = data.duration;
-        loopTime = 1;
+        loopTime = 0;
         endDelay = 0;
         if (animation != null) {
             animation.pause();
@@ -203,9 +203,8 @@ function playSound(sound) {
 }
 
 function changeColor(lightness, rgb, sound) {
-    //alert(rgb);
     if (animation != null) return;
-    console.log('change Color!'+ rgb);
+    console.log('change Color!'+ rgb, lightness);
     // console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
     if(direction != 'normal' && sound != null) {
         setTimeout(function () {
