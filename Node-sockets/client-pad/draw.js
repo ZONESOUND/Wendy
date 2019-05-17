@@ -1,11 +1,19 @@
-const MAX_STARS = 300;
+const MAX_STARS = 150;
 let speed = 20,stars = [];
 let cols, rows,current = [],previous = [],damping = 0.9;
 let r = 10
 var sound, amplitude;
+let NOISE_TRIGGER = false
+
+
 let meteors = []
 let particle_r = 2
-let NOISE_TRIGGER = false
+let color_array = [
+    [255,255,255],
+    [0  , 255, 255],
+    [255,   0, 255],
+    [255, 255,   0],
+]
 
 
 function setup() {
@@ -14,6 +22,7 @@ function setup() {
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i] = new Star();
     }
+
     frameRate(60)
 }
 
@@ -21,14 +30,15 @@ function setup() {
 
 function draw() {
     clear();
-    if(NOISE_TRIGGER) {
+
+    if (NOISE_TRIGGER) {
         createNoise(particle_r)
-        $('.inside-btn').css('display','none')
+        $('.inside-btn').css('display', 'none')
         return
-    }else {
+    } else {
         $('.inside-btn').css('display', 'block')
     }
-    
+
     if(!START) {
         drawTitleText()
     }else {
@@ -65,15 +75,18 @@ function windowResized() {
 
 
 function starField() {
-    if (START) {
-        translate(windowWidth / 2.5, windowHeight / 2);
+    if(START) {
+        translate(windowWidth / 2, windowHeight / 2);
     }
 
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i].update();
         stars[i].show();
     }
+
+
 }
+
 
 function meteorField() {
     for (var i = 0; i < meteors.length; i++) {
@@ -88,9 +101,9 @@ function meteorField() {
 
 
 function createMeteor(index) {
-    for (var i = 0; i < Math.floor(2 * Math.random()) + 1; i++) {
-        var offset_x = Math.random() * (windowWidth / 2) - (windowWidth / 4)
-        var offset_y = Math.random() * (windowHeight / 2) - (windowHeight / 4)
+    for (var i = 0; i < Math.floor(3 * Math.random() + 1); i++) {
+        var offset_x = Math.random() * (windowWidth  / 2)  - (windowWidth  / 4)
+        var offset_y = Math.random() * (windowHeight / 2)  - (windowHeight / 4)
         meteors.push(new Meteor(offset_x, offset_y, BTN_COLOR[index]))
     }
 }
@@ -99,7 +112,7 @@ function createMeteor(index) {
 
 
 function drawTitleText() {
-    translate(windowWidth / 2.5, windowHeight / 2);
+    translate(windowWidth/2, windowHeight/2);
     const scaleFactor = 0.5;
     const maxLimit = 200;
     if (frameCount < maxLimit) {
@@ -117,7 +130,7 @@ function drawTitleText() {
     noStroke();
     fill(255);
     textFont('Arial');
-    text('Press Screen to Start！', 0, 0);
+    text('Touch Screen to Start！', 0, 0);
 
     textAlign(CENTER, CENTER);
 }
@@ -198,7 +211,8 @@ class Meteor {
 
     show() {
 
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < 10/
+            0; i++) {
             var d = 1 + (i * 2);
             var alpha = 255 - (i * this.r);
             noStroke();

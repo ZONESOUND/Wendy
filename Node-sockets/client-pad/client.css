@@ -1,0 +1,162 @@
+html.iphone,
+html.iphone body {
+  height: 100.1%;
+}
+
+body {
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+:root {
+  --my-variable-name: #999999;
+}
+
+/* img {
+  position: absolute;
+  bottom: -30%;
+  width: 100%;
+  left: 0;
+} */
+
+
+#line {
+  position: absolute;
+  width: 1.5%;
+  height: 100%;
+  left: 50%;
+  top: -10%;
+  transform: translate(-50%, 0);
+  background: gray;
+}
+
+#line-left {
+  position: absolute;
+  width: 1.5%;
+  height: 100%;
+  left: 0;
+  top: -10%;
+  /*transform: translate(-50%, 0);*/
+  background: gray;
+  transform: rotate(-0.03turn);
+}
+
+#line-right {
+  position: absolute;
+  width: 1.5%;
+  height: 100%;
+  right: 0;
+  top: -10%;
+  background: gray;
+  transform: rotate(0.03turn);
+
+}
+
+.outer_panel {
+  /*opacity: 0;*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 35%;
+  width: 100%;
+  background: gray;
+  /*top: 50%;*/
+  /*left: 50%;*/
+  /*transform: translate(-50%, -50%);*/
+  /*margin-top:10%;
+  margin-left:10%;
+  margin-right:10%;
+  height: 0;
+  width: 80%;
+  border-bottom: 120px solid #cccccc;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;*/
+  -webkit-clip-path: polygon(50% 0%, 96% 35%, 100% 100%, 100% 100%, 0 100%, 0 100%, 4% 35%);
+  clip-path: polygon(50% 0%, 96% 35%, 100% 100%, 100% 100%, 0 100%, 0 100%, 4% 35%);
+}
+
+#button_wrap {
+  height: 80%;
+  width: 50%;
+  margin: 1% auto;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.outer_button {
+  display: inline-block;
+  width: 12%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+
+.inside-btn {
+  margin-left: 5px;
+  margin-top: 5px;
+  outline: none;
+
+  /*position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);*/
+
+  cursor: pointer;
+
+  border: none;
+  border-radius: 3%;
+  width: 95%;
+  color: gray;
+
+}
+
+.inside-btn:after {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+
+.glow {
+  /*background-image: linear-gradient(to right top, #5d5f60, #a0aaaf, #f2f2f2)*/
+  /*background-image: linear-gradient(to right top, #f7204b, #f72843, #f7303a, #f63831, #f43f27);*/
+
+  /*transition: 100ms;*/
+  /*box-shadow: 
+    0 0 0px #000, 
+    0 0 20px #F43F27,
+    0 0 300px #F27160;*/
+}
+
+.glow:active {
+
+
+  background-image: linear-gradient(to left bottom, #f7204b, #f72843, #f7303a, #f63831, #f43f27);
+  box-shadow:
+    0 0 20px #000,
+    0 0 40px #F43F27,
+    0 0 800px #F27160;
+}
+
+
+.silver {
+  background: linear-gradient(45deg, rgba(160, 160, 160, 1) 0%, rgba(232, 232, 232, 1) 56%);
+}
+
+.metal {
+  /*background-color: #e4eee9;
+  background-image: linear-gradient(315deg, #e4eee9 0%, #93a5ce 74%);*/
+  /*background-color: #2f4353;
+  background-image: linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%);*/
+  background-color: #5b6467;
+  background-image: linear-gradient(315deg, #5b6467 0%, #8b939a 74%);
+}
+
+.metal2 {
+  background-color: #d3d3d3;
+  background-image: linear-gradient(315deg, #d3d3d3 0%, #57606f 74%);
+
+}
