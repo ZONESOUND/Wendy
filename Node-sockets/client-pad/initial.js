@@ -52,7 +52,7 @@ $(document).ready(function () {
     setTimeout(function() {
         if (performance.navigation.type == 1) {
             try {
-                initial()
+                Tone.context.resume();
             }catch {
                 console.log('err')
             }

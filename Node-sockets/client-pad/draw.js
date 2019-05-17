@@ -1,4 +1,4 @@
-const MAX_STARS = 50;
+const MAX_STARS = 100;
 let speed = 20,stars = [];
 let cols, rows,current = [],previous = [],damping = 0.9;
 let r = 10
