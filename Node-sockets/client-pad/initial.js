@@ -42,11 +42,19 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 }
 
 $(document).ready(function () {
+
     document.addEventListener(DEVICE_EVENT, initial)
     setInterval(() => {
         location.reload();
         console.log(reload)
-    }, 1000 * 60);
+    }, 1000 * 40);
+
+    setTimeout(function() {
+        if (performance.navigation.type == 1) {
+            initial()
+        }
+    }, 1000)
+
 });
 
 function initial() {
