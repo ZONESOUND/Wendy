@@ -44,6 +44,8 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 $(document).ready(function () {
 
     document.addEventListener(DEVICE_EVENT, initial)
+
+    // document.removeEventListener(DEVICE_EVENT, initial)
     // setInterval(() => {
     //     location.reload();
     //     console.log(reload)
