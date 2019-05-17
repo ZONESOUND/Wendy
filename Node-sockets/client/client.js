@@ -23,6 +23,7 @@ socket.on('connect', () => {
         }
         checkLightMode(data);  
         checkShootStatus(data);
+        checkNoiseStatus(data)
     });
     
 })

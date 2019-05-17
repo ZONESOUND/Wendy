@@ -2,13 +2,13 @@ const MAX_STARS = 300;
 let speed = 20,stars = [];
 let cols, rows,current = [],previous = [],damping = 0.9;
 let r = 10
-var sound, amplitude;
+let sound, amplitude;
 let meteors = []
 let particle_r = 2
-let NOISE_TRIGGER = false
 
 
 function setup() {
+
     var canvas = createCanvas(windowWidth, windowHeight)
     canvas.parent('inner');
     for (var i = 0; i < MAX_STARS; i++) {
