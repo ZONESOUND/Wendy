@@ -14,13 +14,19 @@ let color_array = [
 p5.disableFriendlyErrors = true; // disables FES
 
 
+setInterval(() => {
+    setup()
+    redraw()
+    console.log('redraw')
+}, 1000 * 10);
+
+
 function setup() {
     var canvas = createCanvas(windowWidth, windowHeight)
     canvas.parent('inner');
     for (var i = 0; i < MAX_STARS; i++) {
         stars[i] = new Star();
     }
-
     frameRate(60)
 }
 
