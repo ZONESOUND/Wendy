@@ -137,9 +137,9 @@ function drawTitleText() {
 
 class Star {
     constructor() {
-        this.x = random(-width, width);
-        this.y = random(-width, height);
-        this.z = random(width);
+        this.x = (Math.random() * 2 * width) - width
+        this.y = (Math.random() * 2 * height) - height
+        this.z = Math.random() * width
         this.pz = this.z;
     }
 
@@ -148,8 +148,8 @@ class Star {
 
         if (z < 1) {
             this.z = width;
-            this.x = random(-width, width);
-            this.y = random(-width, height);
+            this.x = (Math.random() * 2 * width) - width
+            this.y = (Math.random() * 2 * height) - height
             this.pz = this.z;
         }
     }
@@ -158,12 +158,12 @@ class Star {
         let x = this.x,
             y = this.y,
             z = this.z,
-            sx = map(x / z, 0, 1, 0, width),
-            sy = map(y / z, 0, 1, 0, height),
-            px = map(x / this.pz, 0, 1, 0, width),
-            py = map(y / this.pz, 0, 1, 0, height);
+            sx = map(x / z, 0, 0.8, 0, width),
+            sy = map(y / z, 0, 0.8, 0, height),
+            px = map(x / this.pz, 0, 0.8, 0, width),
+            py = map(y / this.pz, 0, 0.8, 0, height);
 
-        fill(255, 255, 255);
+        fill(255);
         noStroke();
 
         this.pz = z;
@@ -181,9 +181,6 @@ function createNoise(particle_r) {
    for (h = 0; h < windowHeight; h += 5){
        for (i = 0; i < windowWidth; i += 5) {
            let c = random(0, 255);
-           // let g = random(0, 255);
-           // let b = random(0, 255);
-           // Pixel size
            rect(i, h, particle_r, particle_r);
            fill(c);
        }
