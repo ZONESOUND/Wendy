@@ -8,7 +8,6 @@ socket.on('connect', () => {
     console.log("connect");
     if(UUID == null) {
         UUID = generate_uuid()
-        console.log(UUID)
         localStorage.setItem("uuid", UUID);
     }
 
@@ -17,6 +16,7 @@ socket.on('connect', () => {
     })
 
     socket.on('clientRecieve', (data) => {
+        console.log('clientRecieve: ' + data)
         if(data.compass) {
             RECEIVE_BUTTON_CLICK = data.shoot
             return

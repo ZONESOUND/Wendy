@@ -77,7 +77,7 @@ function checkLightMode(data) {
     if (data.mode == undefined) return;
     delay = 0;
     mode = data.mode
-    console.log(mode)
+    console.log('CheckLightMode:'+ mode)
     order = data.order;
     // if (order >= rgbcolors.length) {
     //     order = Math.floor(Math.random()*rgbcolors.length);
@@ -88,7 +88,6 @@ function checkLightMode(data) {
     else if (data.order_to != undefined && data.order_to > data.order) {
         order = data.order + Math.floor(Math.random()*(data.order_to-data.order+1));
     }
-    console.log(order);
 
     if (data.color == undefined) {
         color = toColorString(rgbcolors[order]);
@@ -116,13 +115,6 @@ function checkLightMode(data) {
                 else loopTime = data.times;
                 changeColor(1, color, sound);
             }
-            //setTimeout(function() {
-                // if (blink_sound.state == "stopped") {
-                //     blink_sound.restart();
-                // }
-                //console.log("blink: "+blink_sound.state);
-            //}, delay);
-            //$('body').css('background-color', `${data.color}`)
             
         }
     } else if (mode == "light") {
@@ -195,9 +187,6 @@ function genColorFromSound(ind, color) {
 function playSound(sound) {
     if(sound) {
         sound.start();
-        // if (sound.state == "stopped") {
-        //     sound.start();
-        // }
     } 
 
 }

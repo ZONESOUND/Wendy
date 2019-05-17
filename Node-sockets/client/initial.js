@@ -18,26 +18,11 @@ let handleOrientation = () => {
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     DEVICE_EVENT = 'touchstart'
-    // if (window.DeviceOrientationEvent) {
-    //     window.addEventListener("deviceorientation", handleOrientation, false);
-    //     setTimeout(() => {
-    //         if(COMPASS_DIR == -1000) {
-    //             Swal.fire({
-    //                 text: '設定 > Safari > 動作與定向取用',
-    //                 imageUrl: './img/notice.gif',
-    //                 imageWidth: window.outerWidth / 2,
-    //                 imageHeight: window.outerWidth / 2 * 1.65,
-    //                 width: window.outerWidth / 1.3,
-    //                 imageAlt: 'Notice',
-    //                 padding: '1em',
-    //                 animation: true,
-    //                 heightAuto: false,
-    //             })
-    //         }
-    //     }, 300);
-    // } else {
-    //     alert('device does not support DeviceOrientation')
-    // }
+    if (window.DeviceOrientationEvent) {
+        // window.addEventListener("deviceorientation", handleOrientation, false);
+    } else {
+        console.log('device does not support DeviceOrientation')
+    }
 }
 
 $(document).ready(function () {
@@ -91,4 +76,22 @@ function openFullscreen() {
         /* IE/Edge */
         document.documentElement.msRequestFullscreen();
     }
+}
+
+function orientationNotice() {
+    setTimeout(() => {
+        if(COMPASS_DIR == -1000) {
+            Swal.fire({
+                text: '設定 > Safari > 動作與定向取用',
+                imageUrl: './img/notice.gif',
+                imageWidth: window.outerWidth / 2,
+                imageHeight: window.outerWidth / 2 * 1.65,
+                width: window.outerWidth / 1.3,
+                imageAlt: 'Notice',
+                padding: '1em',
+                animation: true,
+                heightAuto: false,
+            })
+        }
+    }, 300);
 }

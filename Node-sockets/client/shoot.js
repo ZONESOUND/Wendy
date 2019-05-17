@@ -1,4 +1,4 @@
-var SHOOT_CD = 4*1000;
+var SHOOT_CD = 30*1000;
 var SMOOTH_COUNT= 0;
 var GLOW_INTERVAL;
 var BTN_COLOR = [];
