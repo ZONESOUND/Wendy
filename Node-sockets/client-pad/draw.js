@@ -1,5 +1,5 @@
 const MAX_STARS = 100;
-let speed = 30,stars = [];
+let speed = 20,stars = [];
 let cols, rows,current = [],previous = [],damping = 0.9;
 let r = 10
 var sound, amplitude;
@@ -11,6 +11,7 @@ let color_array = [
     [255,   0, 255],
     [255, 255,   0],
 ]
+p5.disableFriendlyErrors = true; // disables FES
 
 
 function setup() {
