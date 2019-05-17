@@ -5,6 +5,7 @@ let r = 10
 let sound, amplitude;
 let meteors = []
 let particle_r = 2
+p5.disableFriendlyErrors = true; // disables FES
 
 
 function setup() {
