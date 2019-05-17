@@ -89,6 +89,9 @@ function checkLightMode(data) {
         color = data.color;
     }
 
+    var sound = blink_sound[order];
+    if (data.sound == 0) sound = null;
+
     if (mode == "blink") {
         if (data.uuid.includes(UUID)) {
             delay = Math.random()*data.random;
@@ -103,7 +106,7 @@ function checkLightMode(data) {
                 if (data.times == undefined)
                     loopTime = 1;
                 else loopTime = data.times;
-                changeColor(1, color, blink_sound[order]);
+                changeColor(1, color, sound);
             }
             //setTimeout(function() {
                 // if (blink_sound.state == "stopped") {
@@ -126,7 +129,7 @@ function checkLightMode(data) {
             animation = null;
         }
         
-        changeColor(data.percentage, color, blink_sound[order]);
+        changeColor(data.percentage, color, sound);
     }
 
 }
@@ -196,7 +199,7 @@ function changeColor(lightness, rgb, sound) {
     if (animation != null) return;
     console.log('change Color!'+ rgb);
     // console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
-    if(direction != 'normal') {
+    if(direction != 'normal' && sound != null) {
         setTimeout(function () {
             playSound(sound)
         }, delay);
