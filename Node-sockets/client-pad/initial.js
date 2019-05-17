@@ -51,7 +51,11 @@ $(document).ready(function () {
 
     setTimeout(function() {
         if (performance.navigation.type == 1) {
-            initial()
+            try {
+                initial()
+            }catch {
+                console.log('err')
+            }
         }
     }, 1000)
 
