@@ -1,5 +1,5 @@
-const MAX_STARS = 150;
-let speed = 20,stars = [];
+const MAX_STARS = 100;
+let speed = 30,stars = [];
 let cols, rows,current = [],previous = [],damping = 0.9;
 let r = 10
 var sound, amplitude;

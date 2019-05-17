@@ -42,13 +42,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 }
 
 $(document).ready(function () {
-    let urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('screen')) {
-        ONLYSCREEN = urlParams.get('screen')
-    }
-    
     document.addEventListener(DEVICE_EVENT, initial)
-
 });
 
 function initial() {
