@@ -107,7 +107,7 @@ function checkNoiseStatus(data) {
 
 function checkShootStatus(data) {
 	console.log("status:"+data);
-GE4RT5GHB 	if (data.status == "Shoot") {
+ 	if (data.status == "Shoot") {
 		if (!ENABLE_SHOOT) enableBtn(".inside-btn");
 		ENABLE_SHOOT = true;
 		if (data.btn_color != undefined) {
