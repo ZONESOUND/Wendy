@@ -30,6 +30,8 @@ $(document).ready(function () {
 
 });
 
+
+
 function initial() {
     if (Tone.context.state !== 'running') {
         Tone.context.resume();

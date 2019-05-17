@@ -111,6 +111,7 @@ function createMeteor(index) {
 
 function drawTitleText() {
     translate(windowWidth/2, windowHeight/2);
+    return
     const scaleFactor = 0.5;
     const maxLimit = 200;
     if (frameCount < maxLimit) {
