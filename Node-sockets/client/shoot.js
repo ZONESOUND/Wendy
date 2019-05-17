@@ -116,6 +116,7 @@ function checkShootStatus(data) {
 			enableBtn(".inside-btn");
 		}
 		if (data.cd != undefined) {
+			console.log('cd:'+data.cd)
 			SHOOT_CD = data.cd;
 		}
 	} else if (data.status != undefined){

@@ -55,10 +55,10 @@ function initial() {
     if (Tone.context.state !== 'running') {
         Tone.context.resume();
     }
-
-    bodyScrollLock.disableBodyScroll(window);
-    disableZoom()
-    START = true;
+     START = true;
+    // bodyScrollLock.disableBodyScroll(window);
+    // disableZoom()
+   
     
 }
 

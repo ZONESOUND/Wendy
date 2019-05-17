@@ -16,7 +16,7 @@ socket.on('connect', () => {
     })
 
     socket.on('clientRecieve', (data) => {
-        console.log('clientRecieve: ' + data)
+        console.log('clientRecieve: ' + data.status)
         if(data.compass) {
             RECEIVE_BUTTON_CLICK = data.shoot
             return

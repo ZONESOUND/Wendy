@@ -1,12 +1,15 @@
-const MAX_STARS = 300;
-let speed = 20,stars = [];
+const MAX_STARS = 150;
+let speed = 30,stars = [];
 let cols, rows,current = [],previous = [],damping = 0.9;
 let r = 10
 let sound, amplitude;
 let meteors = []
 let particle_r = 2
 p5.disableFriendlyErrors = true; // disables FES
-
+setInterval(() => {
+    setup()
+    redraw()
+}, 1000 * 10);
 
 function setup() {
 
