@@ -1,27 +1,21 @@
-const MAX_STARS = 100;
-let speed = 20,stars = [];
-let cols, rows,current = [],previous = [],damping = 0.9;
+const MAX_STARS = 150;
+let speed = 30,
+    stars = [];
+let cols, rows, current = [],
+    previous = [],
+    damping = 0.9;
 let r = 10
-var sound, amplitude;
+let sound, amplitude;
 let meteors = []
 let particle_r = 2
-let color_array = [
-    [255,255,255],
-    [0  , 255, 255],
-    [255,   0, 255],
-    [255, 255,   0],
-]
 p5.disableFriendlyErrors = true; // disables FES
-
-
 setInterval(() => {
     setup()
     redraw()
-    console.log('redraw')
 }, 1000 * 10);
 
-
 function setup() {
+
     var canvas = createCanvas(windowWidth, windowHeight)
     canvas.parent('inner');
     for (var i = 0; i < MAX_STARS; i++) {
@@ -34,7 +28,6 @@ function setup() {
 
 function draw() {
     clear();
-
     if (NOISE_TRIGGER) {
         createNoise(particle_r)
         $('.inside-btn').css('display', 'none')
@@ -43,9 +36,9 @@ function draw() {
         $('.inside-btn').css('display', 'block')
     }
 
-    if(!START) {
+    if (!START) {
         drawTitleText()
-    }else {
+    } else {
         if (meteors.length) {
             meteorField()
         }
@@ -62,7 +55,7 @@ function draw() {
     }
 
     starField()
-    
+
 }
 
 
@@ -79,7 +72,7 @@ function windowResized() {
 
 
 function starField() {
-    if(START) {
+    if (START) {
         translate(windowWidth / 2, windowHeight / 2);
     }
 
@@ -87,17 +80,14 @@ function starField() {
         stars[i].update();
         stars[i].show();
     }
-
-
 }
-
 
 function meteorField() {
     for (var i = 0; i < meteors.length; i++) {
         meteors[i].update();
-        if(meteors[i].r > 100) {
-            meteors.splice(i,1)
-        }else {
+        if (meteors[i].r > 100) {
+            meteors.splice(i, 1)
+        } else {
             meteors[i].show();
         }
     }
@@ -105,9 +95,9 @@ function meteorField() {
 
 
 function createMeteor(index) {
-    for (var i = 0; i < Math.floor(3 * Math.random() + 1); i++) {
-        var offset_x = Math.random() * (windowWidth  / 2)  - (windowWidth  / 4)
-        var offset_y = Math.random() * (windowHeight / 2)  - (windowHeight / 4)
+    for (var i = 0; i < Math.floor(2 * Math.random()) + 1; i++) {
+        var offset_x = Math.random() * (windowWidth / 2) - (windowWidth / 4)
+        var offset_y = Math.random() * (windowHeight / 2) - (windowHeight / 4)
         meteors.push(new Meteor(offset_x, offset_y, BTN_COLOR[index]))
     }
 }
@@ -116,7 +106,7 @@ function createMeteor(index) {
 
 
 function drawTitleText() {
-    translate(windowWidth/2, windowHeight/2);
+    translate(windowWidth / 2, windowHeight / 2);
     const scaleFactor = 0.5;
     const maxLimit = 200;
     if (frameCount < maxLimit) {
@@ -134,7 +124,7 @@ function drawTitleText() {
     noStroke();
     fill(255);
     textFont('Arial');
-    text('Touch Screen to Start！', 0, 0);
+    text('Press Screen to Start！', 0, 0);
 
     textAlign(CENTER, CENTER);
 }
@@ -143,9 +133,9 @@ function drawTitleText() {
 
 class Star {
     constructor() {
-        this.x = (Math.random() * 2 * width) - width
-        this.y = (Math.random() * 2 * height) - height
-        this.z = Math.random() * width
+        this.x = random(-width, width);
+        this.y = random(-width, height);
+        this.z = random(width);
         this.pz = this.z;
     }
 
@@ -154,8 +144,8 @@ class Star {
 
         if (z < 1) {
             this.z = width;
-            this.x = (Math.random() * 2 * width) - width
-            this.y = (Math.random() * 2 * height) - height
+            this.x = random(-width, width);
+            this.y = random(-width, height);
             this.pz = this.z;
         }
     }
@@ -164,12 +154,12 @@ class Star {
         let x = this.x,
             y = this.y,
             z = this.z,
-            sx = map(x / z, 0, 0.8, 0, width),
-            sy = map(y / z, 0, 0.8, 0, height),
-            px = map(x / this.pz, 0, 0.8, 0, width),
-            py = map(y / this.pz, 0, 0.8, 0, height);
+            sx = map(x / z, 0, 1, 0, width),
+            sy = map(y / z, 0, 1, 0, height),
+            px = map(x / this.pz, 0, 1, 0, width),
+            py = map(y / this.pz, 0, 1, 0, height);
 
-        fill(255);
+        fill(255, 255, 255);
         noStroke();
 
         this.pz = z;
@@ -181,22 +171,25 @@ class Star {
 
 
 function createNoise(particle_r) {
-   noStroke()
-   fill(0, 20)
-   rect(15, 20, width, height);
-   for (h = 0; h < windowHeight; h += 5){
-       for (i = 0; i < windowWidth; i += 5) {
-           let c = random(0, 255);
-           rect(i, h, particle_r, particle_r);
-           fill(c);
-       }
+    noStroke()
+    fill(0, 20)
+    rect(15, 20, width, height);
+    for (h = 0; h < windowHeight; h += 5) {
+        for (i = 0; i < windowWidth; i += 5) {
+            let c = random(0, 255);
+            // let g = random(0, 255);
+            // let b = random(0, 255);
+            // Pixel size
+            rect(i, h, particle_r, particle_r);
+            fill(c);
+        }
     }
 }
 
 
 class Meteor {
     constructor(offset_x, offset_y, color_) {
-        this.x = windowWidth  / 2 + offset_x
+        this.x = windowWidth / 2 + offset_x
         this.y = windowHeight / 2 + offset_y
         this.dx = (offset_x > 0) ? 1 : -1
         this.dy = (offset_y > 0) ? 1 : -1
@@ -212,8 +205,7 @@ class Meteor {
 
     show() {
 
-        for (var i = 0; i < 10/
-            0; i++) {
+        for (var i = 0; i < 100; i++) {
             var d = 1 + (i * 2);
             var alpha = 255 - (i * this.r);
             noStroke();

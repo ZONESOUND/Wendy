@@ -21,10 +21,10 @@ socket.on('connect', () => {
     socket.on('clientRecieve', (data) => {
         if(data.compass) {
             RECEIVE_BUTTON_CLICK = data.shoot
+            console.log(data.shoot)
             return
         }
         checkLightMode(data);  
-        checkShootStatus(data);
         checkNoiseStatus(data)
     });
     

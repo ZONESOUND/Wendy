@@ -179,6 +179,10 @@ function playSound(sound) {
 function changeColor(lightness, rgb, sound) {
     //alert(rgb);
     if (animation != null) return;
+    if (rgb == undefined) {
+        console.log('rgb undefied!!!!')
+        return
+    }
     console.log('change Color!'+ rgb);
     // console.log("hsla(" + colors[order] + "," + lightness.toString() + ")");
     if(direction != 'normal') {
