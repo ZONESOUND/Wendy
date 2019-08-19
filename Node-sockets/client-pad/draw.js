@@ -54,7 +54,7 @@ function draw() {
         RECEIVE_BUTTON_CLICK = 0
     }
 
-    starField()
+    //starField()
 
 }
 
