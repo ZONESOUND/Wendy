@@ -11,26 +11,46 @@ var colors = ["0, 100%, 100%",
 "0, 100%, 68%",
 "196, 100%, 68%"]
 
-var rgbcolors = ["255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255",
+/*
+
+255,64,255 m
+255,251,0 y
+0, 253, 255 c
+
+r
+g
+b
+
+150,0,150 purple
+255,191,0 yellow
+*/
+
+
+
+var rgbcolors = [
 "255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255",
+"255,64,255",
+"255,251,0",
+"0, 0, 255",
+"0, 253, 255",
+//
+"255, 0, 0",
+"0, 255, 0",
+"0, 0, 255",
+"150,0,150", 
+"255,191,0",
+//
 "255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255",
-"255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255",
-"255, 255, 255", 
-"255, 250, 92",
-"255, 92, 92",
-"92, 211, 255"
+"255,64,255",
+"255,251,0",
+"0, 0, 255",
+"0, 253, 255",
+//
+"255, 0, 0",
+"0, 255, 0",
+"0, 0, 255",
+"150,0,150", 
+"255,191,0",
 ]
 
 var blink_sound = []
@@ -56,19 +76,20 @@ for (var i=0; i<4; i++) {
 
 function checkLightMode(data) {
     if (data.mode == undefined) return;
+    //console.log("data:\n"+data.color);
     delay = 0;
     mode = data.mode
-    console.log(mode)
+    //console.log(mode)
     order = data.order;
-    // if (order >= rgbcolors.length) {
-    //     order = Math.floor(Math.random()*rgbcolors.length);
-    // }
+    if (order >= rgbcolors.length) {
+        order = Math.floor(Math.random()*rgbcolors.length);
+    }
     if (data.order_to != undefined && data.order_to > data.order) {
         order = data.order + Math.floor(Math.random()*(data.order_to-data.order+1));
     }
-    console.log(order);
-
+    //console.log(order);
     if (data.color == undefined) {
+        console.log("data color undefined");
         color = rgbcolors[order];
     } else {
         color = data.color;
@@ -88,7 +109,17 @@ function checkLightMode(data) {
                 if (data.times == undefined)
                     loopTime = 1;
                 else loopTime = data.times;
+                //if (data.randomcolor == 0) {
                 changeColor(1, color, blink_sound[order]);
+                // } else {
+                //     var loopTimeTemp = loopTime;
+                //     loopTime = 1;
+                //     for (let i=0; i<loopTimeTemp; i++) {
+                //         setTimeout(function() {
+                //             changeColor(1, color[i], blink_sound[order]);
+                //         }, duration*i);
+                //     }
+                // }
             }
             //setTimeout(function() {
                 // if (blink_sound.state == "stopped") {
